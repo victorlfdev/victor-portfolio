@@ -16,7 +16,8 @@ import {
 import projectAiCutAssistant from "@/assets/project-aicutassistant.png";
 import projectAmplifica from "@/assets/project-amplifica.png";
 import projectEducaOnline from "@/assets/project-educaonline.png";
-import projectSalaoCleuzaPriori from "@/assets/project-salao-cleuza-priori.png";
+import projectSalaoCleuzaPriori from "@/assets/project-salao-cleuza-priori.webm";
+import projectSalaoCleuzaPrioriImage from "@/assets/project-salao-cleuza-priori.png";
 
 export const portfolioContent = {
   pt: {
@@ -134,6 +135,16 @@ export const portfolioContent = {
         "Projetos acadêmicos, experimentais e profissionais que conectam interface, estrutura e entrega real.",
       items: [
         {
+          title: "Salão Cleuza Priori",
+          category: "Landing Page Profissional",
+          description: "Landing page desenvolvida para o salão de beleza Cleuza Priori, focada em apresentar os serviços, equipe e contato de forma clara e visualmente atraente.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          video: projectSalaoCleuzaPriori,
+          image: projectSalaoCleuzaPrioriImage,
+          cta: "Ver projeto",
+          href: "https://github.com/victorlfdev/salao-cleuza-priori",
+        },
+        {
           title: "Amplifica Landing",
           category: "Projeto profissional",
           description:
@@ -162,16 +173,6 @@ export const portfolioContent = {
           image: projectEducaOnline,
           cta: "Ver repositório",
           href: "https://github.com/victorlfdev/Hackathon",
-        },
-        {
-          title: "Salão Cleuza Priori",
-          category: "Landing Page Profissional",
-          description:
-            "Landing page desenvolvida para o salão de beleza Cleuza Priori, focada em apresentar os serviços, equipe e contato de forma clara e visualmente atraente.",
-          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-          image: projectSalaoCleuzaPriori,
-          cta: "Ver projeto",
-          href: "https://github.com/victorlfdev/salao-cleuza-priori",
         },
       ],
     },
@@ -308,6 +309,16 @@ export const portfolioContent = {
         "Academic, experimental, and professional projects that connect interface, structure, and real delivery.",
       items: [
         {
+          title: "Salão Cleuza Priori",
+          category: "Professional Landing Page",
+          description: "Landing page built for the Cleuza Priori beauty salon, focused on presenting services, team, and contact information in a clear and visually appealing way.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          video: projectSalaoCleuzaPriori,
+          image: projectSalaoCleuzaPrioriImage,
+          cta: "View project",
+          href: "https://github.com/victorlfdev/salao-cleuza-priori",
+        },
+        {
           title: "Amplifica Landing",
           category: "Professional project",
           description:
@@ -336,16 +347,6 @@ export const portfolioContent = {
           image: projectEducaOnline,
           cta: "View repository",
           href: "https://github.com/victorlfdev/Hackathon",
-        },
-        {
-          title: "Beauty Salon Cleuza Priori",
-          category: "Professional Landing Page",
-          description:
-            "Landing page developed for the Cleuza Priori beauty salon, focused on presenting services, team, and contact information in a clear and visually appealing way.",
-          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-          image: projectSalaoCleuzaPriori,
-          cta: "View project",
-          href: "https://github.com/victorlfdev/salao-cleuza-priori",
         },
       ],
     },
