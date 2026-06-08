@@ -16,7 +16,7 @@ import {
 import projectAiCutAssistant from "@/assets/project-aicutassistant.png";
 import projectAmplifica from "@/assets/project-amplifica.png";
 import projectEducaOnline from "@/assets/project-educaonline.png";
-import projectSerenatto from "@/assets/project-serenatto.png";
+import projectSalaoCleuzaPriori from "@/assets/project-salao-cleuza-priori.png";
 
 export const portfolioContent = {
   pt: {
@@ -164,14 +164,14 @@ export const portfolioContent = {
           href: "https://github.com/victorlfdev/Hackathon",
         },
         {
-          title: "Cafeteria Serenatto",
-          category: "Front-End",
+          title: "Salão Cleuza Priori",
+          category: "Landing Page Profissional",
           description:
-            "Site de cafeteria desenvolvido com HTML, CSS e Bootstrap 5, focado em estrutura visual consistente e construção de layout responsivo.",
-          stack: ["HTML", "CSS", "Bootstrap 5"],
-          image: projectSerenatto,
+            "Landing page desenvolvida para o salão de beleza Cleuza Priori, focada em apresentar os serviços, equipe e contato de forma clara e visualmente atraente.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          image: projectSalaoCleuzaPriori,
           cta: "Ver projeto",
-          href: "https://github.com/victorlfdev/Cafeteria-Serenatto",
+          href: "https://github.com/victorlfdev/salao-cleuza-priori",
         },
       ],
     },
@@ -338,14 +338,14 @@ export const portfolioContent = {
           href: "https://github.com/victorlfdev/Hackathon",
         },
         {
-          title: "Cafeteria Serenatto",
-          category: "Front-End",
+          title: "Beauty Salon Cleuza Priori",
+          category: "Professional Landing Page",
           description:
-            "Coffee shop website built with HTML, CSS, and Bootstrap 5, focused on visual consistency and responsive layout construction.",
-          stack: ["HTML", "CSS", "Bootstrap 5"],
-          image: projectSerenatto,
+            "Landing page developed for the Cleuza Priori beauty salon, focused on presenting services, team, and contact information in a clear and visually appealing way.",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          image: projectSalaoCleuzaPriori,
           cta: "View project",
-          href: "https://github.com/victorlfdev/Cafeteria-Serenatto",
+          href: "https://github.com/victorlfdev/salao-cleuza-priori",
         },
       ],
     },
