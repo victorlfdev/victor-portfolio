@@ -18,7 +18,7 @@ export const Contact = () => {
   const content = getPortfolioContent(locale).contact;
 
   return (
-    <section id="contato" className="py-24 md:py-32">
+    <section id={"contato contact"} lang={locale} className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-accent p-8 shadow-elegant sm:p-12 md:p-16">
           <div
@@ -27,7 +27,7 @@ export const Contact = () => {
           />
           <div className="relative grid items-start gap-10 md:grid-cols-2">
             <div className="reveal">
-              <p className="text-sm uppercase tracking-[0.2em] text-white/70">{content.eyebrow}</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-white/70">{content.eyebrow}</p>
               <h2 className="mt-4 font-display text-4xl leading-[1.02] text-white sm:text-5xl md:text-6xl">
                 {content.titleBefore}
                 <span className="italic">{content.titleEmphasis}</span>
@@ -44,7 +44,7 @@ export const Contact = () => {
                       target="_blank"
                       rel="noreferrer noopener"
                       aria-label={s.label}
-                      className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white hover:text-slate-950"
+                      className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                     >
                       <Icon className="h-5 w-5" />
                     </a>
@@ -53,14 +53,16 @@ export const Contact = () => {
               </div>
             </div>
 
-            <ul className="reveal space-y-3">
+            <ul className="reveal space-y-4">
               {content.channels.map((c) => {
                 const Icon = channelIcons[c.icon];
                 return (
                   <li key={c.label}>
                     <a
                       href={c.href}
-                      className="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/8 p-5 backdrop-blur transition-colors hover:bg-white/15"
+                      className="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/8 p-5 backdrop-blur transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                      {...(c.href.startsWith("https://") ? { target: "_blank", rel: "noreferrer noopener" } : {})}
+                      tabIndex={0}
                     >
                       <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/15 text-white">
                         <Icon className="h-5 w-5" />
@@ -79,7 +81,7 @@ export const Contact = () => {
         </div>
 
         <footer className="mt-12 flex flex-col items-center justify-between gap-3 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Victor Lima Fernandes.</p>
+          <p>© 2024–{new Date().getFullYear()} Victor Lima Fernandes.</p>
           <p className="font-display italic">{content.footer}</p>
         </footer>
       </div>

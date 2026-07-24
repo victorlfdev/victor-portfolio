@@ -137,6 +137,11 @@
     transform: translateY(0);
   }
 
+  /* Project card: focus-within border accent + lift for keyboard navigation */
+  .project-card:focus-within {
+    @apply -translate-y-1 border-primary/30 shadow-[0_30px_80px_-28px_hsl(224_42%_10%_/_0.28)];
+  }
+
   [data-hero-animate] {
     opacity: 0;
     filter: blur(10px);

@@ -10,16 +10,31 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 *.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tsbuildinfo
+
+# Vite cache
+.vite/
+
+# Test coverage
+coverage/
+.nyc_output/

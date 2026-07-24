@@ -215,10 +215,13 @@ Borders are thin and present at `--border` (`hsl(216 24% 86%)` light / `hsl(223 
 
 ### Project Cards
 - **Structure:** Full-bleed media (16:10 aspect ratio) on top, content area below. Media area has a gradient overlay at the bottom for the stack labels.
+- **Tier system:** `shipped` projects have a 3px cyan accent line at the top edge and a "Shipped" badge next to the category label. `prototype` projects have a "Prototype" badge. Other tiers render without special indicators.
 - **Media:** Image or `<video>` with `object-cover`, `object-top` alignment. 3% scale-up on hover.
 - **Stack labels:** Positioned absolutely at the bottom of the media area, pill-shaped, 32px radius, semi-transparent background with backdrop blur.
-- **Content area:** 24px padding, eyebrow label uppercase, title in display weight, description 14px muted foreground.
-- **CTA:** `hsl(var(--primary))` text with an ArrowUpRight icon that translates right on hover.
+- **Content area:** 24px padding, category label + tier badge row, title in display weight, description 14px muted foreground.
+- **CTA:** `hsl(var(--foreground))` text (not primary) with an ArrowUpRight icon that translates right on hover. Hover state: text shifts to primary with underline.
+- **Hover:** Card lifts (`-translate-y-1`) with deeper shadow. Entire card is the actionable surface.
+- **Keyboard focus:** `focus-within` lifts card, applies primary-tinted border, and adds lift shadow. Matches hover elevation state.
 
 ### Contact Section
 - **Structure:** Single full-width card with `gradient-accent` background (cyan-to-charcoal gradient), 32px radius. Two-column grid: text + socials on the left, contact channels on the right.
