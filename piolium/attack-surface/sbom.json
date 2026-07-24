@@ -1,0 +1,142 @@
+{
+  "project": "victor-portfolio",
+  "generated": "2025-07-15",
+  "components": [
+    {
+      "name": "react",
+      "version": "18.3.1",
+      "type": "runtime",
+      "category": "frontend-framework",
+      "runtime_context": "client-side rendering",
+      "security_relevant": false
+    },
+    {
+      "name": "react-dom",
+      "version": "18.3.1",
+      "type": "runtime",
+      "category": "frontend-framework",
+      "runtime_context": "client-side DOM rendering",
+      "security_relevant": false
+    },
+    {
+      "name": "react-router-dom",
+      "version": "7.14.1",
+      "type": "runtime",
+      "category": "routing",
+      "runtime_context": "client-side routing",
+      "security_relevant": false
+    },
+    {
+      "name": "@tanstack/react-query",
+      "version": "5.83.0",
+      "type": "runtime",
+      "category": "data-fetching",
+      "runtime_context": "client-side caching (unused in current app)",
+      "security_relevant": false
+    },
+    {
+      "name": "vite",
+      "version": "7.3.2",
+      "type": "dev",
+      "category": "build-tool",
+      "runtime_context": "local dev/build only",
+      "security_relevant": false
+    },
+    {
+      "name": "tailwindcss",
+      "version": "3.4.17",
+      "type": "dev",
+      "category": "css-framework",
+      "runtime_context": "build-time CSS generation",
+      "security_relevant": false
+    },
+    {
+      "name": "typescript",
+      "version": "5.8.3",
+      "type": "dev",
+      "category": "language",
+      "runtime_context": "compile-time only",
+      "security_relevant": false
+    },
+    {
+      "name": "lenis",
+      "version": "1.3.23",
+      "type": "runtime",
+      "category": "animation",
+      "runtime_context": "smooth scroll on client",
+      "security_relevant": false
+    },
+    {
+      "name": "next-themes",
+      "version": "0.3.0",
+      "type": "runtime",
+      "category": "theming",
+      "runtime_context": "localStorage theme persistence",
+      "security_relevant": false
+    },
+    {
+      "name": "sonner",
+      "version": "1.7.4",
+      "type": "runtime",
+      "category": "notification-ui",
+      "runtime_context": "toast notifications",
+      "security_relevant": false
+    },
+    {
+      "name": "zod",
+      "version": "3.25.76",
+      "type": "runtime",
+      "category": "validation",
+      "runtime_context": "schema validation (unused in current app)",
+      "security_relevant": false
+    },
+    {
+      "name": "date-fns",
+      "version": "3.6.0",
+      "type": "runtime",
+      "category": "date-util",
+      "runtime_context": "client-side date formatting",
+      "security_relevant": false
+    },
+    {
+      "name": "radix-ui/*",
+      "version": "1.x",
+      "type": "runtime",
+      "category": "ui-primitives",
+      "runtime_context": "accessible component primitives (16 packages)",
+      "security_relevant": false
+    },
+    {
+      "name": "lucide-react",
+      "version": "0.462.0",
+      "type": "runtime",
+      "category": "icons",
+      "runtime_context": "SVG icons",
+      "security_relevant": false
+    },
+    {
+      "name": "recharts",
+      "version": "2.15.4",
+      "type": "runtime",
+      "category": "charting",
+      "runtime_context": "client-side charts",
+      "security_relevant": false
+    },
+    {
+      "name": "clsx",
+      "version": "2.1.1",
+      "type": "runtime",
+      "category": "util",
+      "runtime_context": "class name merging",
+      "security_relevant": false
+    },
+    {
+      "name": "tailwind-merge",
+      "version": "2.6.0",
+      "type": "runtime",
+      "category": "util",
+      "runtime_context": "class name merging",
+      "security_relevant": false
+    }
+  ]
+}

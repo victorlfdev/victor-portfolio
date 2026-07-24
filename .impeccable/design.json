@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2025-07-17T18:00:00.000Z",
+  "title": "Design System: Victor Lima Fernandes — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Cyan Blueprint",
+        "canonical": "hsl(192 88% 34%)",
+        "tonalRamp": [
+          "hsl(192 88% 16%)",
+          "hsl(192 88% 22%)",
+          "hsl(192 88% 28%)",
+          "hsl(192 88% 34%)",
+          "hsl(192 88% 40%)",
+          "hsl(191 88% 44%)",
+          "hsl(191 88% 50%)",
+          "hsl(191 88% 56%)"
+        ]
+      },
+      "accent": {
+        "role": "accent",
+        "displayName": "Amber Spark",
+        "canonical": "hsl(34 94% 57%)",
+        "tonalRamp": [
+          "hsl(34 94% 28%)",
+          "hsl(34 94% 35%)",
+          "hsl(34 94% 42%)",
+          "hsl(34 94% 50%)",
+          "hsl(34 94% 57%)",
+          "hsl(34 94% 64%)",
+          "hsl(34 94% 72%)",
+          "hsl(34 94% 80%)"
+        ]
+      },
+      "background-light": {
+        "role": "neutral",
+        "displayName": "Off-White",
+        "canonical": "hsl(210 33% 98%)",
+        "tonalRamp": [
+          "hsl(210 33% 80%)",
+          "hsl(210 33% 86%)",
+          "hsl(210 33% 90%)",
+          "hsl(210 33% 93%)",
+          "hsl(210 33% 96%)",
+          "hsl(210 33% 98%)",
+          "hsl(210 33% 99%)",
+          "hsl(210 33% 100%)"
+        ]
+      },
+      "background-dark": {
+        "role": "neutral",
+        "displayName": "Charcoal",
+        "canonical": "hsl(224 42% 8%)",
+        "tonalRamp": [
+          "hsl(224 42% 4%)",
+          "hsl(224 42% 6%)",
+          "hsl(224 42% 8%)",
+          "hsl(224 42% 12%)",
+          "hsl(224 42% 16%)",
+          "hsl(224 42% 20%)",
+          "hsl(224 42% 28%)",
+          "hsl(224 42% 36%)"
+        ]
+      },
+      "card-light": {
+        "role": "neutral",
+        "displayName": "Pure White",
+        "canonical": "hsl(0 0% 100%)",
+        "tonalRamp": [
+          "hsl(0 0% 75%)",
+          "hsl(0 0% 80%)",
+          "hsl(0 0% 85%)",
+          "hsl(0 0% 90%)",
+          "hsl(0 0% 95%)",
+          "hsl(0 0% 100%)",
+          "hsl(0 0% 100%)",
+          "hsl(0 0% 100%)"
+        ]
+      },
+      "card-dark": {
+        "role": "neutral",
+        "displayName": "Surface Gray",
+        "canonical": "hsl(224 36% 10%)",
+        "tonalRamp": [
+          "hsl(224 36% 6%)",
+          "hsl(224 36% 8%)",
+          "hsl(224 36% 10%)",
+          "hsl(224 36% 14%)",
+          "hsl(224 36% 18%)",
+          "hsl(224 36% 22%)",
+          "hsl(224 36% 28%)",
+          "hsl(224 36% 34%)"
+        ]
+      },
+      "border-light": {
+        "role": "neutral",
+        "displayName": "Border Gray",
+        "canonical": "hsl(216 24% 86%)",
+        "tonalRamp": [
+          "hsl(216 24% 50%)",
+          "hsl(216 24% 58%)",
+          "hsl(216 24% 66%)",
+          "hsl(216 24% 74%)",
+          "hsl(216 24% 82%)",
+          "hsl(216 24% 86%)",
+          "hsl(216 24% 92%)",
+          "hsl(216 24% 96%)"
+        ]
+      },
+      "border-dark": {
+        "role": "neutral",
+        "displayName": "Dark Border",
+        "canonical": "hsl(223 20% 18%)",
+        "tonalRamp": [
+          "hsl(223 20% 8%)",
+          "hsl(223 20% 11%)",
+          "hsl(223 20% 14%)",
+          "hsl(223 20% 18%)",
+          "hsl(223 20% 22%)",
+          "hsl(223 20% 28%)",
+          "hsl(223 20% 36%)",
+          "hsl(223 20% 44%)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines and section titles. Light weight (300) for confident presence."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs, descriptions, and all readable content."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrow labels, chip text, mono accents. JetBrains Mono."
+      }
+    },
+    "shadows": [
+      {
+        "name": "soft",
+        "value": "0 10px 30px -18px hsl(224 42% 10% / 0.22)",
+        "purpose": "Card hover states and secondary elevation. Light mode."
+      },
+      {
+        "name": "soft-dark",
+        "value": "0 10px 30px -18px hsl(0 0% 0% / 0.45)",
+        "purpose": "Card hover states and secondary elevation. Dark mode."
+      },
+      {
+        "name": "elegant",
+        "value": "0 30px 80px -28px hsl(224 42% 10% / 0.28)",
+        "purpose": "Hero card and project card hover. Premium, deep spread."
+      },
+      {
+        "name": "elegant-dark",
+        "value": "0 30px 80px -28px hsl(0 0% 0% / 0.62)",
+        "purpose": "Hero card and project card hover. Dark mode."
+      },
+      {
+        "name": "glow",
+        "value": "0 0 70px hsl(191 88% 44% / 0.2)",
+        "purpose": "Ambient accent glow on the Contact gradient panel."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-smooth",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default easing for all state transitions, reveals, and hero animations."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1400px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill-shaped CTA with cyan background, hover lift with elevated shadow.",
+      "html": "<button class=\"ds-btn-primary\">Ver projetos</button>",
+      "css": ".ds-btn-primary {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5rem;\n  background: hsl(192 88% 34%);\n  color: hsl(210 40% 98%);\n  border-radius: 1rem;\n  padding: 12px 24px;\n  font-size: 0.875rem;\n  font-weight: 500;\n  border: none;\n  cursor: pointer;\n  box-shadow: 0 10px 30px -18px hsl(224 42% 10% / 0.22);\n  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-btn-primary:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 30px 80px -28px hsl(224 42% 10% / 0.28);\n}\n.ds-btn-primary:focus-visible {\n  outline: 2px solid hsl(192 88% 34%);\n  outline-offset: 2px;\n}\n.ds-btn-primary:active {\n  transform: translateY(0);\n}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Transparent pill with border and subtle blur, used for secondary actions.",
+      "html": "<button class=\"ds-btn-outline\">Entrar em contato</button>",
+      "css": ".ds-btn-outline {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5rem;\n  background: hsl(210 33% 98% / 0.6);\n  backdrop-filter: blur(14px);\n  color: hsl(224 42% 10%);\n  border-radius: 1rem;\n  padding: 12px 24px;\n  font-size: 0.875rem;\n  font-weight: 500;\n  border: 1px solid hsl(216 24% 86%);\n  cursor: pointer;\n  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-btn-outline:hover {\n  background: hsl(210 29% 93%);\n}\n.ds-btn-outline:focus-visible {\n  outline: 2px solid hsl(192 88% 34%);\n  outline-offset: 2px;\n}"
+    },
+    {
+      "name": "Chip Tag",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Small pill used for badges, stack labels, and location indicators.",
+      "html": "<span class=\"ds-chip\">React + Next.js</span>",
+      "css": ".ds-chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.375rem;\n  background: hsl(210 33% 98% / 0.6);\n  backdrop-filter: blur(14px);\n  color: hsl(220 14% 42%);\n  border-radius: 2rem;\n  padding: 4px 12px;\n  font-family: 'JetBrains Mono', monospace;\n  font-size: 0.75rem;\n  letter-spacing: 0.18em;\n  border: 1px solid hsl(216 24% 86% / 0.7);\n}\n.ds-chip--dark {\n  background: hsl(223 24% 15% / 0.6);\n  color: hsl(215 18% 72%);\n  border-color: hsl(223 20% 18% / 0.7);\n}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Standard card with border, subtle shadow on hover, and generous padding.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg>...</svg></div><div class=\"ds-card-content\"><p class=\"ds-card-title\">Certificações</p><p class=\"ds-card-desc\">React, UX Design, HTML and CSS, Bootstrap 5.</p></div></div>",
+      "css": ".ds-card {\n  background: hsl(0 0% 100%);\n  color: hsl(224 42% 10%);\n  border-radius: 1.5rem;\n  border: 1px solid hsl(216 24% 86%);\n  padding: 1.25rem;\n  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-card:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 10px 30px -18px hsl(224 42% 10% / 0.22);\n}\n.ds-card__icon {\n  display: grid;\n  place-items: center;\n  width: 3rem;\n  height: 3rem;\n  border-radius: 0.75rem;\n  background: hsl(210 29% 93%);\n  color: hsl(192 88% 34%);\n}\n.ds-card:hover .ds-card__icon {\n  background: hsl(192 88% 34%);\n  color: hsl(210 40% 98%);\n}\n.ds-card__title {\n  font-size: 0.875rem;\n  font-weight: 500;\n  color: hsl(224 42% 10%);\n}\n.ds-card__desc {\n  margin-top: 0.75rem;\n  font-size: 0.875rem;\n  color: hsl(220 14% 42%);\n}\n.ds-card--dark {\n  background: hsl(224 36% 10%);\n  color: hsl(210 40% 98%);\n  border-color: hsl(223 20% 18%);\n}\n.ds-card--dark .ds-card__icon {\n  background: hsl(223 24% 15%);\n}\n.ds-card--dark:hover .ds-card__icon {\n  background: hsl(191 88% 52%);\n  color: hsl(224 42% 10%);\n}\n.ds-card--dark .ds-card__title { color: hsl(210 40% 98%); }\n.ds-card--dark .ds-card__desc { color: hsl(215 18% 72%); }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Floating pill navbar that transitions to glass on scroll.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#top\" class=\"ds-nav-brand\">vlf<span class=\"ds-nav-dot\"></span>.</a><ul class=\"ds-nav-links\"><li><a href=\"#sobre\">Sobre</a></li><li><a href=\"#projetos\">Projetos</a></li></ul><div class=\"ds-nav-actions\"><a href=\"#contato\" class=\"ds-btn-primary\">Contato</a></div></nav>",
+      "css": ".ds-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 50;\n  padding: 1.25rem;\n  transition: padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-nav.scrolled {\n  padding: 0.75rem;\n}\n.ds-nav-inner {\n  max-width: 1152px;\n  margin: 0 auto;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 1rem;\n  border-radius: 2rem;\n  padding: 0.5rem;\n  transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-nav.scrolled .ds-nav-inner {\n  background: hsl(210 33% 98% / 0.6);\n  backdrop-filter: blur(14px);\n  box-shadow: 0 10px 30px -18px hsl(224 42% 10% / 0.22);\n}\n.ds-nav-brand {\n  font-family: 'Space Grotesk', system-ui, sans-serif;\n  font-size: 1.25rem;\n  font-weight: 600;\n  letter-spacing: -0.04em;\n  color: hsl(224 42% 10%);\n  text-decoration: none;\n}\n.ds-nav-dot {\n  color: hsl(192 88% 34%);\n}\n.ds-nav-links {\n  display: flex;\n  gap: 0.25rem;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.ds-nav-links a {\n  padding: 0.5rem 1rem;\n  font-size: 0.875rem;\n  color: hsl(220 14% 42%);\n  border-radius: 2rem;\n  text-decoration: none;\n  transition: color 0.2s;\n}\n.ds-nav-links a:hover {\n  color: hsl(224 42% 10%);\n}\n.ds-nav-actions {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n@media (max-width: 767px) {\n  .ds-nav-links { display: none; }\n}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-elevated",
+      "description": "Full-bleed media card with stack labels overlay and project details.",
+      "html": "<article class=\"ds-project\"><div class=\"ds-project-media\"><img src=\"project.png\" alt=\"Project screenshot\" /><div class=\"ds-project-tags\"><span>Next.js</span><span>TypeScript</span></div></div><div class=\"ds-project-body\"><span class=\"ds-project-category\">Professional Landing Page</span><h3 class=\"ds-project-title\">Salão Cleuza Priori</h3><p class=\"ds-project-desc\">Landing page developed for...</p><a href=\"#\" class=\"ds-project-cta\">View project <span>→</span></a></div></article>",
+      "css": ".ds-project {\n  background: hsl(0 0% 100%);\n  color: hsl(224 42% 10%);\n  border-radius: 2rem;\n  border: 1px solid hsl(216 24% 86%);\n  overflow: hidden;\n  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-project:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 30px 80px -28px hsl(224 42% 10% / 0.28);\n}\n.ds-project-media {\n  position: relative;\n  aspect-ratio: 16 / 10;\n  overflow: hidden;\n  border-bottom: 1px solid hsl(216 24% 86%);\n}\n.ds-project-media img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  object-position: top;\n  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-project:hover .ds-project-media img {\n  transform: scale(1.03);\n}\n.ds-project-tags {\n  position: absolute;\n  bottom: 1rem;\n  left: 1rem;\n  right: 1rem;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n  background: linear-gradient(to top, hsl(0 0% 100%) 0%, hsl(0 0% 100% / 0.88) 60%, transparent 100%);\n  padding: 1rem;\n  padding-top: 2.5rem;\n}\n.ds-project-tags span {\n  display: inline-block;\n  border-radius: 2rem;\n  background: hsl(210 33% 98% / 0.85);\n  backdrop-filter: blur(14px);\n  color: hsl(220 14% 42%);\n  padding: 4px 12px;\n  font-family: 'JetBrains Mono', monospace;\n  font-size: 0.75rem;\n  border: 1px solid hsl(216 24% 86% / 0.8);\n}\n.ds-project-body {\n  padding: 1.5rem;\n}\n.ds-project-category {\n  font-size: 0.75rem;\n  letter-spacing: 0.18em;\n  text-transform: uppercase;\n  color: hsl(220 14% 42%);\n}\n.ds-project-title {\n  margin-top: 0.5rem;\n  font-family: 'Space Grotesk', system-ui, sans-serif;\n  font-size: 1.5rem;\n  font-weight: 400;\n  color: hsl(224 42% 10%);\n}\n.ds-project-desc {\n  margin-top: 0.5rem;\n  font-size: 0.875rem;\n  line-height: 1.6;\n  color: hsl(220 14% 42%);\n}\n.ds-project-cta {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.375rem;\n  margin-top: 1.25rem;\n  font-size: 0.875rem;\n  font-weight: 500;\n  color: hsl(192 88% 34%);\n  text-decoration: none;\n  transition: gap 0.2s;\n}\n.ds-project-cta:hover { gap: 0.625rem; }\n.ds-project--dark {\n  background: hsl(224 36% 10%);\n  color: hsl(210 40% 98%);\n  border-color: hsl(223 20% 18%);\n}\n.ds-project--dark .ds-project-tags {\n  background: linear-gradient(to top, hsl(224 36% 10%) 0%, hsl(224 36% 10% / 0.88) 60%, transparent 100%);\n}\n.ds-project--dark .ds-project-tags span {\n  background: hsl(210 40% 98% / 0.85);\n  color: hsl(220 14% 42%);\n  border-color: hsl(223 20% 18% / 0.8);\n}\n.ds-project--dark .ds-project-category { color: hsl(215 18% 72%); }\n.ds-project--dark .ds-project-title { color: hsl(210 40% 98%); }\n.ds-project--dark .ds-project-desc { color: hsl(215 18% 72%); }"
+    },
+    {
+      "name": "Skill Cell",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Grid cell for skill display with hover-activating icon.",
+      "html": "<div class=\"ds-skill\"><span class=\"ds-skill-icon\"><svg>...</svg></span><p class=\"ds-skill-label\">React</p></div>",
+      "css": ".ds-skill {\n  background: hsl(0 0% 100%);\n  color: hsl(224 42% 10%);\n  border-radius: 1.5rem;\n  border: 1px solid hsl(216 24% 86%);\n  padding: 1.25rem;\n  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-skill:hover {\n  transform: translateY(-4px);\n  border-color: hsl(192 88% 34% / 0.3);\n  box-shadow: 0 10px 30px -18px hsl(224 42% 10% / 0.22);\n}\n.ds-skill-icon {\n  display: grid;\n  place-items: center;\n  width: 2.75rem;\n  height: 2.75rem;\n  border-radius: 0.75rem;\n  background: hsl(210 29% 93%);\n  color: hsl(192 88% 34%);\n  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-skill:hover .ds-skill-icon {\n  background: hsl(192 88% 34%);\n  color: hsl(210 40% 98%);\n}\n.ds-skill-label {\n  margin-top: 1rem;\n  font-size: 0.875rem;\n  font-weight: 500;\n  color: hsl(224 42% 10%);\n}\n.ds-skill--dark {\n  background: hsl(224 36% 10%);\n  color: hsl(210 40% 98%);\n  border-color: hsl(223 20% 18%);\n}\n.ds-skill--dark:hover {\n  border-color: hsl(191 88% 52% / 0.3);\n}\n.ds-skill--dark .ds-skill-icon {\n  background: hsl(223 24% 15%);\n}\n.ds-skill--dark:hover .ds-skill-icon {\n  background: hsl(191 88% 52%);\n  color: hsl(224 42% 10%);\n}\n.ds-skill--dark .ds-skill-label { color: hsl(210 40% 98%); }"
+    },
+    {
+      "name": "Contact Glass Card",
+      "kind": "card",
+      "refersTo": "card-elevated",
+      "description": "Glass panel inside the gradient contact section for contact channels.",
+      "html": "<a href=\"mailto:email@example.com\" class=\"ds-contact-card\"><span class=\"ds-contact-icon\"><svg>...</svg></span><div class=\"ds-contact-info\"><p class=\"ds-contact-label\">Email</p><p class=\"ds-contact-value\">victorlf2002@gmail.com</p></div><span class=\"ds-contact-arrow\">→</span></a>",
+      "css": ".ds-contact-card {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  border-radius: 1.5rem;\n  background: hsl(255 255 255 / 0.08);\n  backdrop-filter: blur(14px);\n  padding: 1.25rem;\n  text-decoration: none;\n  border: 1px solid hsl(255 255 255 / 0.15);\n  color: hsl(255 255 255);\n  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-contact-card:hover {\n  background: hsl(255 255 255 / 0.15);\n}\n.ds-contact-icon {\n  display: grid;\n  place-items: center;\n  width: 3rem;\n  height: 3rem;\n  border-radius: 0.75rem;\n  background: hsl(255 255 255 / 0.15);\n}\n.ds-contact-label {\n  font-size: 0.75rem;\n  letter-spacing: 0.18em;\n  text-transform: uppercase;\n  color: hsl(255 255 255 / 0.6);\n}\n.ds-contact-value {\n  margin-top: 0.25rem;\n  font-size: 1rem;\n  font-weight: 500;\n  color: hsl(255 255 255);\n}\n.ds-contact-arrow {\n  margin-left: auto;\n  font-size: 1.25rem;\n  color: hsl(255 255 255 / 0.7);\n  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);\n}\n.ds-contact-card:hover .ds-contact-arrow {\n  transform: translate(2px, -2px);\n  color: hsl(255 255 255);\n}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Confident Workshop",
+    "overview": "The visual system treats the portfolio like a developer's own workspace: precise, well-organized, nothing wasted. Space Grotesk provides a tech-forward base that reads as intentional rather than decorative. The cyan accent is reserved for primary actions and structural emphasis — it earns its rarity. Amber exists only at the margins: gradient stops, the favicon dot, small highlights. Dark mode flips the canvas rather than tinting it; the charcoal background is neutral, not moody.\n\nGlass and blur appear on interactive surfaces only (the navbar on scroll, hover states). At rest, everything is solid — no phantom frosted glass blocking content behind it.",
+    "keyCharacteristics": [
+      "Tech-forward but not gimmicky; Space Grotesk carries the voice",
+      "Cyan Blueprint is the sole structural accent; Amber Spark is a whisper",
+      "Dark mode is charcoal, not black; warmth lives in the amber",
+      "Rounded corners are generous but not pill-obsessed",
+      "Motion uses a single easing curve throughout",
+      "Content sections breathe with wide vertical spacing"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Cyan Blueprint is the only solid accent color on the page. Amber Spark is reserved for gradients, the favicon, and micro-highlights — it never appears as a standalone fill or text color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Glass-By-Response Rule",
+        "body": "Glass/blur is only applied when the user interacts with a surface — the navbar on scroll, hover states on cards. Default surfaces are solid.",
+        "section": "colors"
+      },
+      {
+        "name": "The Code Speaks Rule",
+        "body": "Space Grotesk is the only display and body font. JetBrains Mono appears only in the code panel and mono labels. No serif, no script, no third font family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lift-By-Response Rule",
+        "body": "Shadows deepen only on hover or active state. At rest, surfaces are tonally layered with no shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the single easing curve cubic-bezier(0.22, 1, 0.36, 1) for all transitions.",
+      "Do keep Cyan Blueprint as the only solid accent color on screen at any given time.",
+      "Do use Space Grotesk light (300) for large headlines and regular (400) for body.",
+      "Do apply glass/blur only to surfaces responding to interaction.",
+      "Do use generous rounded corners (24px–32px) on hero and project cards.",
+      "Do maintain 32px vertical section padding on desktop."
+    ],
+    "donts": [
+      "Don't introduce a third font family.",
+      "Don't use Amber Spark as a flat fill, border color, or standalone text color.",
+      "Don't apply shadows at rest.",
+      "Don't use inline padding values that break the spacing rhythm.",
+      "Don't fill a card with an image or gradient that reduces text readability."
+    ]
+  }
+}

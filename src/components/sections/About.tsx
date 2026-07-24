@@ -7,60 +7,91 @@ export const About = () => {
 
   return (
     <section id="sobre" className="py-24 md:py-32">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-12 md:gap-16">
-        <div className="reveal md:col-span-5">
-          <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{content.eyebrow}</p>
-          <h2 className="mt-4 font-display text-4xl leading-[1.05] text-foreground sm:text-5xl md:text-6xl">
-            {content.titleBefore}
-            <span className="italic text-primary">{content.titleEmphasis}</span>
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {content.paragraphOne}
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {content.paragraphTwo}
-          </p>
+      <div className="mx-auto max-w-6xl px-6 md:px-8">
+        {/* Eyebrow — spans full width, low visual weight */}
+        <p className="reveal text-sm uppercase tracking-[0.2em] text-muted-foreground">
+          {content.eyebrow}
+        </p>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {content.cards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <div key={card.title} className="rounded-2xl border border-border bg-card p-5">
-                  <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5 text-primary" />
-                    <p className="text-sm font-medium text-foreground">{card.title}</p>
+        {/* Headline — breaks out to full width, larger and bolder */}
+        <h2
+          id="sobre-titulo"
+          className="reveal mt-4 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl md:text-7xl md:leading-[1.0]"
+        >
+          {content.titleBefore}
+          <span className="italic text-primary">{content.titleEmphasis}</span>
+        </h2>
+
+        {/* Two-column layout: narrative left, timeline right */}
+        <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-16">
+          {/* Left — narrative block + stat cards */}
+          <div className="reveal md:col-span-5">
+            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {content.paragraphOne}
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {content.paragraphTwo}
+            </p>
+
+            {/* Forward-looking closer */}
+            <p className="mt-6 text-sm text-muted-foreground/70">
+              {locale === "pt" ? "Agora, construindo interfaces que importam." : "Now, building interfaces that matter."}
+            </p>
+
+            {/* Stat cards — with lift-by-response hover treatment */}
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {content.cards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <div
+                    key={card.title}
+                    className="reveal group rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary/60 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <p className="text-sm font-medium text-foreground">{card.title}</p>
+                    </div>
+                    <p className="mt-3 text-sm text-muted-foreground">{card.text}</p>
                   </div>
-                  <p className="mt-3 text-sm text-muted-foreground">{card.text}</p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
 
-        <div className="md:col-span-7">
-          <ul className="space-y-3">
-            {content.timeline.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <li
-                  key={`${item.title}-${idx}`}
-                  className="reveal group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
-                  style={{ transitionDelay: `${idx * 60}ms` }}
-                >
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-foreground sm:text-base">{item.title}</p>
-                    <p className="text-sm text-muted-foreground">{item.org}</p>
-                  </div>
-                  <span className="hidden text-xs tabular-nums text-muted-foreground sm:inline-block">
-                    {item.period}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+          {/* Right — timeline with visible connector line */}
+          <div className="reveal md:col-span-7">
+            <ul className="relative space-y-4 pl-[2.75rem] md:pl-[3.5rem]">
+              {/* Vertical connector line */}
+              <div className="absolute top-0 left-[2.25rem] md:left-[3rem] h-full w-px bg-border" />
+
+              {content.timeline.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <li
+                    key={`${item.title}-${idx}`}
+                    className="reveal relative flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
+                    style={{ transitionDelay: `${idx * 60}ms` }}
+                  >
+                    {/* Timeline dot — sits on the connector line */}
+                    <span className="absolute -left-[0.5rem] md:-left-[0.75rem] top-1/2 -translate-y-1/2 grid h-3 w-3 shrink-0 place-items-center rounded-full bg-primary ring-4 ring-background" />
+
+                    <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="line-clamp-2 text-sm font-medium text-foreground sm:text-base">{item.title}</p>
+                      <p className="text-sm text-muted-foreground">{item.org}</p>
+                    </div>
+                    <span className="hidden shrink-0 text-xs tabular-nums text-muted-foreground sm:inline-block">
+                      {item.period}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

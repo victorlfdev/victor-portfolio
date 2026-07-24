@@ -65,22 +65,22 @@ export const portfolioContent = {
     },
     about: {
       eyebrow: "Sobre mim",
-      titleBefore: "Código com foco em ",
+      titleBefore: "Mais que código, ",
       titleEmphasis: "clareza e entrega.",
       paragraphOne:
-        "Sou desenvolvedor Full Stack com foco em Front-End, com experiência prática na criação de landing pages e interfaces web usando React, JavaScript, HTML e CSS.",
+        "Desenvolvo interfaces que existem para ser usadas — não protótipos bonitos, mas sites reais que carregam, conversam com o usuário e entregam o que o cliente precisa. Minha formação audiovisual me ensinou a pensar em cada pixel com intenção: layout, hierarquia, fluxo. Código é só o meio.",
       paragraphTwo:
-        "Atuei na estruturação e entrega do site oficial da Amplifica e trago também vivência com Node.js, PostgreSQL, suporte técnico e operação audiovisual, o que amplia minha visão de produto e execução.",
+        "Estruturei e entreguei o site oficial da Amplifica e trago também experiência com Node.js, PostgreSQL, suporte técnico e operação audiovisual — o que me dá uma visão de produto completa, do primeiro frame à linha de comando.",
       cards: [
         {
           icon: Languages,
-          title: "Idiomas",
-          text: "Português nativo e inglês profissional para leitura, comunicação e documentação.",
+          title: "Bilingue para trabalho",
+          text: "Português nativo e inglês profissional para documentação, comunicação e times remotos.",
         },
         {
           icon: Medal,
-          title: "Certificações",
-          text: "React, UX Design, HTML e CSS, Bootstrap 5 e lógica com JavaScript.",
+          title: "Formação prática",
+          text: "React, UX Design, HTML/CSS, Bootstrap 5 e Pós em Full Stack pela FIAP.",
         },
       ],
       timeline: [
@@ -239,22 +239,22 @@ export const portfolioContent = {
     },
     about: {
       eyebrow: "About me",
-      titleBefore: "Code with focus on ",
+      titleBefore: "More than code, ",
       titleEmphasis: "clarity and delivery.",
       paragraphOne:
-        "I am a Full Stack developer focused on Front-End, with hands-on experience building landing pages and web interfaces using React, JavaScript, HTML, and CSS.",
+        "I build interfaces that exist to be used — not pretty prototypes, but real sites that load, communicate with the user, and deliver what the client needs. My audiovisual background taught me to think about every pixel with intention: layout, hierarchy, flow. Code is just the means.",
       paragraphTwo:
-        "I worked on structuring and delivering Amplifica's official website and also bring experience with Node.js, PostgreSQL, technical support, and audiovisual operations, which strengthens my product and execution mindset.",
+        "I structured and delivered Amplifica's official website and also bring experience with Node.js, PostgreSQL, technical support, and audiovisual operations — giving me a complete product vision, from the first frame to the command line.",
       cards: [
         {
           icon: Languages,
-          title: "Languages",
-          text: "Native Portuguese and professional English for reading, communication, and documentation.",
+          title: "Bilingual for work",
+          text: "Native Portuguese and professional English for documentation, communication, and remote teams.",
         },
         {
           icon: Medal,
-          title: "Certifications",
-          text: "React, UX Design, HTML and CSS, Bootstrap 5, and JavaScript logic.",
+          title: "Practical training",
+          text: "React, UX Design, HTML/CSS, Bootstrap 5, and a Postgraduate in Full Stack from FIAP.",
         },
       ],
       timeline: [
