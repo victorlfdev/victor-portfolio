@@ -1,12 +1,37 @@
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { getPortfolioContent } from "@/content/portfolio-content";
 
 export const About = () => {
   const { locale } = useLanguage();
   const content = getPortfolioContent(locale).about;
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const elements = section.querySelectorAll<HTMLElement>(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [locale]);
 
   return (
-    <section id="sobre" className="py-24 md:py-32">
+    <section id="sobre" className="py-24 md:py-32" ref={sectionRef}>
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         {/* Eyebrow — spans full width, low visual weight */}
         <p className="reveal text-sm uppercase tracking-[0.2em] text-muted-foreground">
@@ -44,8 +69,8 @@ export const About = () => {
                 const Icon = card.icon;
                 return (
                   <div
-                    key={card.title}
-                    className="reveal group rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
+                    key={`card-${locale}-${card.title}`}
+                    className="group rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
                   >
                     <div className="flex items-center gap-3">
                       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary/60 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -70,8 +95,8 @@ export const About = () => {
                 const Icon = item.icon;
                 return (
                   <li
-                    key={`${item.title}-${idx}`}
-                    className="reveal relative flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
+                    key={`timeline-${locale}-${item.title}-${idx}`}
+                    className="relative flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-soft"
                     style={{ transitionDelay: `${idx * 60}ms` }}
                   >
                     {/* Timeline dot — sits on the connector line */}
