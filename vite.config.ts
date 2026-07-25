@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    allowedHosts: ["cachyos-vlf.taild64028.ts.net"],
     hmr: {
       overlay: false,
     },

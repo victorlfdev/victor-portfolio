@@ -1,52 +1,46 @@
-# Portfolio Victor
+# Portfolio
 
-Portfólio pessoal desenvolvido com React, TypeScript e Vite para apresentar experiência, habilidades, projetos e canais de contato de forma responsiva.
+Portfólio pessoal de Victor com React, TypeScript e Vite — experiência, projetos, habilidades e contato em uma única landing responsiva.
 
-## Visão geral
+## Funcionalidades
 
-O projeto foi estruturado como uma landing page com foco em apresentação profissional. A aplicação inclui:
-
-- seções de hero, sobre, habilidades, projetos e contato;
-- suporte a dois idiomas: português e inglês;
-- alternância de tema com persistência no navegador;
-- animações de entrada e rolagem suave;
-- roteamento básico com página `NotFound`;
-- base de componentes com `shadcn/ui` e Radix UI.
+- Duas seções principais: hero, sobre, habilidades, projetos e contato;
+- Internacionalização: português e inglês;
+- Alternância de tema claro/escuro com persistência via `localStorage`;
+- Animações de entrada e scroll suave;
+- Navegação com `react-router` e página 404;
+- Base de componentes com `shadcn/ui` e Radix UI.
 
 ## Stack
 
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- shadcn/ui
-- Radix UI
-- React Router
-- TanStack Query
-- Vitest + Testing Library
+| Categoria | Tecnologia |
+|-----------|-----------|
+| Framework | React 18 |
+| Linguagem | TypeScript |
+| Bundler | Vite |
+| Estilização | Tailwind CSS |
+| Componentes | shadcn/ui + Radix UI |
+| Roteamento | React Router |
+| Query | TanStack Query |
+| Testes | Vitest + Testing Library |
+| Linter | ESLint |
 
 ## Como executar
 
 ### Pré-requisitos
 
-- Node.js 18 ou superior
+- Node.js 18+
 - `npm` ou `bun`
 
 ### Instalação
 
-Com `npm`:
-
 ```bash
 npm install
-```
-
-Com `bun`:
-
-```bash
+# ou
 bun install
 ```
 
-### Ambiente de desenvolvimento
+### Desenvolvimento
 
 ```bash
 npm run dev
@@ -58,50 +52,38 @@ npm run dev
 npm run build
 ```
 
-### Preview local da build
+### Preview local
 
 ```bash
 npm run preview
 ```
 
-### Lint
+### Validação e testes
 
 ```bash
-npm run lint
+npm run lint    # ESLint
+npm run test    # Vitest
+npm run test:watch  # Vitest em watch mode
 ```
 
-### Testes
-
-```bash
-npm run test
-```
-
-Modo watch:
-
-```bash
-npm run test:watch
-```
-
-## Estrutura principal
+## Estrutura de diretórios
 
 ```text
 src/
-  assets/                  Imagens dos projetos e foto de perfil
+  assets/                   Imagens dos projetos e foto de perfil
   components/
-    sections/              Seções principais da landing page
-    ui/                    Componentes de interface reutilizáveis
+    sections/               Seções da landing page (hero, sobre, etc.)
+    ui/                     Componentes reutilizáveis (shadcn/ui)
   content/
-    portfolio-content.ts   Conteúdo em pt/en do portfólio
-  hooks/                   Hooks de idioma, reveal e rolagem suave
-  pages/                   Página inicial e fallback 404
-  test/                    Configuração e testes
+    portfolio-content.ts    Fonte única de conteúdo (pt/en)
+  hooks/                    useLanguage, useReveal, scroll suave
+  pages/                    Home e 404
+  test/                     Utilitários e fixtures de teste
 ```
 
 ## Personalização
 
-O conteúdo principal da página está centralizado em `src/content/portfolio-content.ts`.
-
-Ali você pode editar:
+Edite `src/content/portfolio-content.ts` para alterar:
 
 - textos em português e inglês;
 - lista de habilidades;
@@ -111,18 +93,20 @@ Ali você pode editar:
 
 As seções visuais ficam em `src/components/sections`.
 
-## Scripts disponíveis
+## Scripts
 
-- `npm run dev`: inicia o servidor Vite
-- `npm run build`: gera a build de produção
-- `npm run build:dev`: gera build em modo development
-- `npm run preview`: serve a build localmente
-- `npm run lint`: executa o ESLint
-- `npm run test`: roda os testes com Vitest
-- `npm run test:watch`: roda os testes em modo observação
+| Script | Descrição |
+|--------|-----------|
+| `npm run dev` | Servidor Vite com HMR |
+| `npm run build` | Build de produção |
+| `npm run build:dev` | Build em modo development |
+| `npm run preview` | Serve a build localmente |
+| `npm run lint` | ESLint |
+| `npm run test` | Vitest (run once) |
+| `npm run test:watch` | Vitest em watch mode |
 
-## Observações
+## Notas
 
-- O repositório contém `package-lock.json` e `bun.lock`, então o projeto pode ser instalado com `npm` ou `bun`.
-- O idioma selecionado pelo usuário é salvo no `localStorage`.
-- O tema padrão atual está configurado como escuro.
+- O repositório inclui `package-lock.json` e `bun.lock` — funcione com `npm` ou `bun` sem conflito.
+- O idioma selecionado persiste no `localStorage` do navegador.
+- O tema padrão é escuro.

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 export type Locale = "pt" | "en";
 
@@ -27,9 +27,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLocale);
   };
 
-  const toggleLocale = () => {
+  const toggleLocale = useCallback(() => {
     setLocale(locale === "pt" ? "en" : "pt");
-  };
+  }, [locale]);
 
   const value = useMemo(
     () => ({
@@ -37,13 +37,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLocale,
       toggleLocale,
     }),
-    [locale]
+    [locale, toggleLocale]
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
-export function useLanguage() {
+export const useLanguage = () => { // eslint-disable-line react-refresh/only-export-components
   const context = useContext(LanguageContext);
 
   if (!context) {

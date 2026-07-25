@@ -47,17 +47,25 @@ export const Projects = () => {
                 )}
 
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-muted">
-                  {p.video ? (
-                    <video
-                      src={p.video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      poster={p.image}
-                      className="h-full w-full object-cover object-top transition-transform duration-700 ease-smooth group-hover:scale-[1.03]"
-                      aria-label={`Video preview of ${p.title}`}
-                    />
+                  {p.live ? (
+                    <div
+                      className="relative mx-auto w-[1200px] overflow-hidden"
+                      style={{ maxWidth: "100%" }}
+                    >
+                      <iframe
+                        src={p.live}
+                        title={`Preview of ${p.title}`}
+                        className="aspect-[16/10] w-full border-0"
+                        style={{
+                          transform: "scale(0.50)",
+                          transformOrigin: "top left",
+                          width: "200%",
+                          height: "200%",
+                        }}
+                        loading="lazy"
+                        allowFullScreen
+                      />
+                    </div>
                   ) : (
                     <img
                       src={p.image}
