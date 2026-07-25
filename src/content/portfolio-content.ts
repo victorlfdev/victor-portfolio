@@ -83,15 +83,15 @@ export const portfolioContent = {
       timeline: [
         {
           icon: Briefcase,
-          title: "Técnico de Audiovisual e Editor de Vídeo",
-          org: "Amplifica Audiovisual",
-          period: "jun 2025 — atual",
-        },
-        {
-          icon: Briefcase,
           title: "Analista de Suporte",
           org: "Valarelli Advogados Associados",
           period: "out 2024 — atual",
+        },
+        {
+          icon: Briefcase,
+          title: "Técnico de Audiovisual e Editor de Vídeo",
+          org: "Amplifica Audiovisual",
+          period: "jun 2025 — mai 2026",
         },
         {
           icon: GraduationCap,
@@ -338,15 +338,15 @@ export const portfolioContent = {
       timeline: [
         {
           icon: Briefcase,
-          title: "Audiovisual Technician and Video Editor",
-          org: "Amplifica Audiovisual",
-          period: "Jun 2025 — Present",
-        },
-        {
-          icon: Briefcase,
           title: "Support Analyst",
           org: "Valarelli Advogados Associados",
           period: "Oct 2024 — Present",
+        },
+        {
+          icon: Briefcase,
+          title: "Audiovisual Technician and Video Editor",
+          org: "Amplifica Audiovisual",
+          period: "Jun 2025 — May 2026",
         },
         {
           icon: GraduationCap,
