@@ -18,7 +18,7 @@ export const Contact = () => {
   const content = getPortfolioContent(locale).contact;
 
   return (
-    <section id={"contato contact"} lang={locale} className="py-24 md:py-32">
+    <section id="contato" lang={locale} className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-accent p-8 shadow-elegant sm:p-12 md:p-16">
           <div
