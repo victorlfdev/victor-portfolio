@@ -4,7 +4,7 @@ Portfólio pessoal de **Victor Lima Fernandes**, desenvolvedor Front-End e Full 
 
 Uma landing single-page com todas as seções — sobre mim, habilidades, projetos e contato — com internacionalização (pt/en), alternância de tema claro/escuro e animações de scroll.
 
-> 🌐 [victor-lima-fernandes.vercel.app](https://victor-lima-fernandes.vercel.app/)
+> 🌐 [victor-portfolio-blush.vercel.app](https://victor-portfolio-blush.vercel.app/)
 
 ## Funcionalidades
 
@@ -20,19 +20,19 @@ Uma landing single-page com todas as seções — sobre mim, habilidades, projet
 
 ## Stack
 
-| Categoria | Tecnologia |
-|-----------|-----------|
-| Framework | React 18 |
-| Linguagem | TypeScript |
-| Bundler | Vite 7 |
-| Estilização | Tailwind CSS 3 |
-| Componentes | shadcn/ui + Radix UI |
-| Roteamento | React Router 7 |
-| Query | TanStack Query |
-| Smooth scroll | Lenis |
-| Testes | Vitest + Testing Library |
-| Linter | ESLint 9 |
-| Ícones | Lucide React |
+| Categoria     | Tecnologia               |
+| ------------- | ------------------------ |
+| Framework     | React 18                 |
+| Linguagem     | TypeScript               |
+| Bundler       | Vite 7                   |
+| Estilização   | Tailwind CSS 3           |
+| Componentes   | shadcn/ui + Radix UI     |
+| Roteamento    | React Router 7           |
+| Query         | TanStack Query           |
+| Smooth scroll | Lenis                    |
+| Testes        | Vitest + Testing Library |
+| Linter        | ESLint 9                 |
+| Ícones        | Lucide React             |
 
 ## Como executar
 
@@ -112,15 +112,15 @@ O conteúdo é tipado e exportado como `portfolioContent` com a função `getPor
 
 ## Scripts
 
-| Script | Descrição |
-|--------|-----------|
-| `npm run dev` | Servidor Vite com HMR (porta 8080) |
-| `npm run build` | Build de produção |
-| `npm run build:dev` | Build em modo development |
-| `npm run preview` | Serve a build localmente |
-| `npm run lint` | ESLint |
-| `npm run test` | Vitest (execução única) |
-| `npm run test:watch` | Vitest (watch mode) |
+| Script               | Descrição                          |
+| -------------------- | ---------------------------------- |
+| `npm run dev`        | Servidor Vite com HMR (porta 8080) |
+| `npm run build`      | Build de produção                  |
+| `npm run build:dev`  | Build em modo development          |
+| `npm run preview`    | Serve a build localmente           |
+| `npm run lint`       | ESLint                             |
+| `npm run test`       | Vitest (execução única)            |
+| `npm run test:watch` | Vitest (watch mode)                |
 
 ## Notas
 
