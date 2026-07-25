@@ -82,7 +82,7 @@ export const Navbar = () => {
           </Button>
 
           <a
-            href="#contato"
+            href="#contato-contact"
             className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:shadow-elegant transition-all duration-300 ease-smooth hover:-translate-y-0.5"
           >
             {content.navbar.contact}

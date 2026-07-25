@@ -14,7 +14,7 @@ export function useLenis() {
       smoothWheel: true,
       syncTouch: false,
       touchMultiplier: 1.1,
-      anchors: true,
+      anchors: false,
       easing: (t) => 1 - Math.pow(1 - t, 4),
     });
 
@@ -36,12 +36,12 @@ export function useLenis() {
         e.preventDefault();
         const targetEl = document.querySelector(href);
         if (targetEl) {
-          lenis.scrollTo(targetEl);
+          lenis.scrollTo(targetEl, { duration: 1 });
         }
       }
     };
 
-    document.addEventListener("click", onLinkClick);
+    document.addEventListener("click", onLinkClick, { capture: true });
 
     return () => {
       window.cancelAnimationFrame(frameId);

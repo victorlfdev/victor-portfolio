@@ -65,7 +65,7 @@ export const Hero = () => {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#contato"
+              href="#contato-contact"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-secondary"
             >
               {content.secondaryCta}

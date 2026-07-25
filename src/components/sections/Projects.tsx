@@ -109,7 +109,7 @@ export const Projects = () => {
                     {p.description}
                   </p>
                   <a
-                    href={p.href ?? "#contato"}
+                    href={p.href ?? "#contato-contact"}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:text-primary hover:underline hover:underline-offset-4 hover:decoration-primary hover:gap-2.5"

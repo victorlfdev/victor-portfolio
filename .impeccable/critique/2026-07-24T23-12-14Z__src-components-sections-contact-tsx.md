@@ -101,3 +101,4 @@ This is a strong, well-executed section that matches the DESIGN.md spec closely.
 - Should the contact section have a visible section-level `id` that works in both languages, or should each language get its own anchor strategy?
 - Is the gradient background strong enough to be the "closing moment" of the scroll journey, or should it push harder?
 - Would adding a Calendly or calendar link (even just "Agendar chamada") increase conversion from visitor to qualified inquiry?
+

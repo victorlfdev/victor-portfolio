@@ -23,7 +23,7 @@ export const portfolioContent = {
         { href: "#sobre", label: "Sobre" },
         { href: "#habilidades", label: "Habilidades" },
         { href: "#projetos", label: "Projetos" },
-        { href: "#contato", label: "Contato" },
+        { href: "#contato-contact", label: "Contato" },
       ],
       contact: "Entrar em contato",
       themeLabelDark: "Ativar modo escuro",
@@ -236,7 +236,7 @@ export const portfolioContent = {
       titleBefore: "Vamos construir algo ",
       titleEmphasis: "bem feito.",
       description:
-        "Busco oportunidades como Desenvolvedor Front-End Júnior e também estou aberto a projetos web freelance e colaborações técnicas.",
+        "Se você chegou até aqui, provavelmente já viu o que eu faço. Estou disponível para contratações, projetos sob demanda e parcerias técnicas. Vamos conversar?",
       channels: [
         {
           label: "Email",
@@ -245,9 +245,9 @@ export const portfolioContent = {
           icon: "mail",
         },
         {
-          label: "Telefone",
+          label: "WhatsApp",
           value: "+55 11 94856-9074",
-          href: "tel:+5511948569074",
+          href: "https://wa.me/5511948569074?text=Ol%C3%A1%2C%20vim%20pelo%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.",
           icon: "phone",
         },
         {
@@ -278,7 +278,7 @@ export const portfolioContent = {
         { href: "#sobre", label: "About" },
         { href: "#habilidades", label: "Skills" },
         { href: "#projetos", label: "Projects" },
-        { href: "#contato", label: "Contact" },
+        { href: "#contato-contact", label: "Contact" },
       ],
       contact: "Get in touch",
       themeLabelDark: "Enable dark mode",
@@ -491,7 +491,7 @@ export const portfolioContent = {
       titleBefore: "Let's build something ",
       titleEmphasis: "well crafted.",
       description:
-        "I am looking for Junior Front-End opportunities and I am also open to freelance web projects and technical collaborations.",
+        "If you made it this far, you've already seen what I do. I'm available for full-time roles, custom projects, and technical partnerships. Let's talk?",
       channels: [
         {
           label: "Email",
@@ -500,9 +500,9 @@ export const portfolioContent = {
           icon: "mail",
         },
         {
-          label: "Phone",
+          label: "WhatsApp",
           value: "+55 11 94856-9074",
-          href: "tel:+5511948569074",
+          href: "https://wa.me/5511948569074?text=Hi%2C%20I%20came%20from%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.",
           icon: "phone",
         },
         {
