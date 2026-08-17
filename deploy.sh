@@ -7,6 +7,6 @@ echo "🏗️ 2/3 - Reconstruindo a imagem Docker..."
 docker build -t victor-portfolio .
 
 echo "🚀 3/3 - Reiniciando o contêiner no CasaOS..."
-docker restart victor-portfolio
+docker restart VictorPortfolio
 
 echo "✅ Concluído! O site foi atualizado com sucesso."
