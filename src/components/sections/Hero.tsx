@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin, MapPin, Sparkles } from "lucide-react";
+import { Github, Linkedin, MapPin, Sparkles } from "lucide-react";
 import profilePhoto from "@/assets/victor-profile.jpg";
 import { useLanguage } from "@/components/language-provider";
 import { getPortfolioContent } from "@/content/portfolio-content";
@@ -24,7 +24,7 @@ export const Hero = () => {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden"
     >
-      <div className="z-0 pointer-events-none" style={{ position: "absolute", inset: 0 }}>
+      <div className="z-0" style={{ position: "absolute", inset: 0 }}>
         <DotGrid
           dotSize={2}
           gap={24}
@@ -38,8 +38,8 @@ export const Hero = () => {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-6 pt-28 md:px-8 md:py-32">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pt-28 md:px-8 md:py-32">
+        <div className="grid gap-10 md:grid-cols-[1.15fr_1fr] md:gap-16">
           {/* Left column — content */}
           <div className="text-left">
             {/* Badge */}
@@ -86,7 +86,6 @@ export const Hero = () => {
                   className="text-primary"
                 />
               </span>
-              <span className="sr-only">{content.titleFirst} {content.titleLast}</span>
             </h1>
 
             {/* Description */}
@@ -98,45 +97,68 @@ export const Hero = () => {
               {content.description}
             </OnMountFadeIn>
 
-            {/* CTAs */}
-            <OnMountFadeIn
-              delay={0.7}
-              direction="up"
-              className="mt-8 flex items-center gap-4"
-            >
-              <a
-                href="#projetos"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            {/* CTAs — Primary + Secondary */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <OnMountFadeIn
+                delay={0.7}
+                direction="up"
               >
-                {content.primaryCta}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
-              </a>
-              <a
-                href="#contato-contact"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/40 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                {content.secondaryCta}
-              </a>
-            </OnMountFadeIn>
+                <a
+                  href="#projetos"
+                  className="group inline-flex items-center gap-2 rounded-[var(--radius)] bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  {content.primaryCta}
+                </a>
+              </OnMountFadeIn>
 
-            {/* Meta — location + tech chips */}
+              <OnMountFadeIn
+                delay={0.8}
+                direction="up"
+              >
+                <a
+                  href="#contato-contact"
+                  className="inline-flex items-center gap-1.5 rounded-[var(--radius)] border border-border/70 bg-background/50 px-5 py-3.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <span>
+                    {locale === "pt" ? "Entrar em contato" : "Get in touch"}
+                  </span>
+                </a>
+              </OnMountFadeIn>
+            </div>
+
+            {/* Metadata — grouped */}
             <OnMountFadeIn
               delay={0.9}
               direction="up"
-              className="mt-8 flex flex-wrap items-center gap-3 text-sm text-muted-foreground"
+              className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground"
             >
+              {/* Group: Location (context) */}
               <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-3.5 w-3.5" /> {content.location}
+                <MapPin className="h-3.5 w-3.5 text-primary" /> {content.location}
               </span>
+
+              {/* Separator between groups */}
               <span className="text-border/40">·</span>
-              {content.chips.map((chip) => (
+
+              {/* Group: Tech stack */}
+              {content.techStack.map((chip) => (
                 <span
                   key={chip}
-                  className="rounded-full border border-border/50 px-3.5 py-1.5 text-xs font-medium"
+                  className="rounded-full border border-border/50 bg-background/40 px-3.5 py-1.5 text-xs font-medium text-foreground"
                 >
                   {chip}
                 </span>
               ))}
+
+              {/* Group: Education / background */}
+              {content.education && (
+                <>
+                  <span className="text-border/40">·</span>
+                  <span className="rounded-full border border-border/50 bg-background/40 px-3.5 py-1.5 text-xs font-medium text-foreground">
+                    {content.education}
+                  </span>
+                </>
+              )}
             </OnMountFadeIn>
           </div>
 
@@ -168,16 +190,16 @@ export const Hero = () => {
                 <div className="relative w-full overflow-hidden rounded-[2rem] bg-card/40" style={{ minHeight: '280px', maxHeight: '480px', height: 'clamp(280px, 50vw, 480px)' }}>
                   <img
                     src={`${profilePhoto}`}
-                    srcset={`${profilePhoto} 1x, ${profilePhoto} 2x`}
+                    srcSet={`${profilePhoto} 1x, ${profilePhoto} 2x`}
                     alt="Foto de perfil de Victor Lima Fernandes"
-                    className="h-full w-full object-cover object-center object-top"
+                    className="h-full w-full object-cover object-center"
                     loading="eager"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent" />
 
                   {/* Nameplate overlay */}
-                  <div className="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-card/70 px-4 py-3 backdrop-blur">
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                  <div className="absolute bottom-5 left-5 rounded-2xl border border-white/10 bg-card/50 px-4 py-3 backdrop-blur-md">
+                    <p className="text-[0.75rem] uppercase tracking-[0.18em] text-muted-foreground">
                       {content.profileTag}
                     </p>
                     <p className="mt-1 text-sm font-medium text-foreground">
@@ -203,7 +225,7 @@ export const Hero = () => {
                         target="_blank"
                         rel="noreferrer noopener"
                         aria-label={locale === "pt" ? "LinkedIn (abre em nova aba)" : "LinkedIn (opens in new tab)"}
-                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="grid h-10 w-10 place-items-center rounded-[var(--radius)] border border-border/70 bg-background/50 transition-all duration-300 ease-smooth hover:bg-secondary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <Linkedin className="h-4 w-4 text-primary" />
                       </a>
@@ -212,7 +234,7 @@ export const Hero = () => {
                         target="_blank"
                         rel="noreferrer noopener"
                         aria-label={locale === "pt" ? "GitHub (abre em nova aba)" : "GitHub (opens in new tab)"}
-                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="grid h-10 w-10 place-items-center rounded-[var(--radius)] border border-border/70 bg-background/50 transition-all duration-300 ease-smooth hover:bg-secondary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <Github className="h-4 w-4 text-primary" />
                       </a>
@@ -224,7 +246,8 @@ export const Hero = () => {
                     href="https://amplificamidias.com.br/"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="rounded-2xl border border-border/60 bg-background/60 p-4 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                    aria-label={locale === "pt" ? "Ver Amplifica Midias — projeto em produção" : "View Amplifica Midias — live project"}
+                    className="rounded-2xl border border-border/60 bg-background/60 p-4 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft"
                   >
                     <div className="flex items-center justify-between">
                       <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
@@ -234,7 +257,6 @@ export const Hero = () => {
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-safe:animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite]" />
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
                       </span>
-                      <span className="sr-only">{locale === "pt" ? "Projeto em produção" : "Project live in production"}</span>
                     </div>
                     <p className="mt-1 text-sm font-medium text-foreground">
                       {content.liveProjectText}

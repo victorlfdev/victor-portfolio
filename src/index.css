@@ -190,7 +190,7 @@
   /* Fluid heading sizes — smooth clamp() scaling, no breakpoint steps */
   .heading-hero {
     font-size: clamp(3.2rem, 3.5vw + 1.2rem, 5.5rem);
-    line-height: 0.95;
+    line-height: 0.98;
   }
 
   .heading-about {
@@ -216,5 +216,19 @@
   .heading-contact {
     font-size: clamp(2.6rem, 2.2vw + 1.6rem, 3.75rem);
     line-height: 1.02;
+  }
+
+  .animate-bob {
+    animation: bob 1.5s var(--transition-smooth) infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  @keyframes pulse-right {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(2px); }
   }
 }

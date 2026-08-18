@@ -38,13 +38,9 @@ export const portfolioContent = {
       description:
         "Desenvolvedor Front-End e Full Stack com foco em React, Next.js, TypeScript, Node.js e PostgreSQL. Construo interfaces responsivas, bem estruturadas e prontas para produção.",
       primaryCta: "Ver projetos",
-      secondaryCta: "Entrar em contato",
       location: "São Paulo, SP",
-      chips: [
-        "React + Next.js",
-        "Pós em Full Stack pela FIAP",
-        "Landing da Amplifica em produção",
-      ],
+      education: "Pós Full Stack — FIAP",
+      techStack: ["React + Next.js", "TypeScript", "Node.js"],
       profileTag: "Perfil",
       profileTagline: "Front-End com visão de produto",
       profileFile: "victorlfdev/profile.tsx",
@@ -293,13 +289,9 @@ export const portfolioContent = {
       description:
         "Front-End and Full Stack developer focused on React, Next.js, TypeScript, Node.js, and PostgreSQL. I build responsive, well-structured interfaces ready for production.",
       primaryCta: "View projects",
-      secondaryCta: "Get in touch",
       location: "Sao Paulo, Brazil",
-      chips: [
-        "React + Next.js",
-        "FIAP postgraduate in Full Stack",
-        "Amplifica landing live in production",
-      ],
+      education: "Postgraduate Full Stack — FIAP",
+      techStack: ["React + Next.js", "TypeScript", "Node.js"],
       profileTag: "Profile",
       profileTagline: "Front-End with product thinking",
       profileFile: "victorlfdev/profile.tsx",
