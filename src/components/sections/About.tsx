@@ -100,7 +100,7 @@ export const About = () => {
                     style={{ transitionDelay: `${idx * 60}ms` }}
                   >
                     {/* Timeline dot — sits on the connector line */}
-                    <span className="absolute -left-[0.5rem] md:-left-[0.75rem] top-1/2 -translate-y-1/2 grid h-3 w-3 shrink-0 place-items-center rounded-full bg-primary ring-4 ring-background" />
+                    <span aria-hidden="true" className="pointer-events-none absolute -left-[0.5rem] md:-left-[0.75rem] top-1/2 -translate-y-1/2 grid h-3 w-3 shrink-0 place-items-center rounded-full bg-primary ring-4 ring-background" />
 
                     <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="h-5 w-5" />

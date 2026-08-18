@@ -54,21 +54,23 @@ export const Hero = () => {
 
             {/* Headline */}
             <h1 aria-label={content.titleFirst + ' ' + content.titleLast} className="mt-6 heading-hero font-display font-medium text-foreground">
-              <SplitText
-                text={content.titleFirst}
-                splitType="chars"
-                delay={40}
-                duration={1}
-                ease="power3.out"
-                from={{ opacity: 0, y: 60, rotateX: -40 }}
-                to={{ opacity: 1, y: 0, rotateX: 0 }}
-                threshold={0.8}
-                rootMargin="0px"
-                tag="span"
-                textAlign="left"
-                className="text-foreground"
-              />{" "}
-              <span className="font-light text-primary">
+              <span aria-hidden="true" className="inline-block">
+                <SplitText
+                  text={content.titleFirst}
+                  splitType="chars"
+                  delay={40}
+                  duration={1}
+                  ease="power3.out"
+                  from={{ opacity: 0, y: 60, rotateX: -40 }}
+                  to={{ opacity: 1, y: 0, rotateX: 0 }}
+                  threshold={0.8}
+                  rootMargin="0px"
+                  tag="span"
+                  textAlign="left"
+                  className="text-foreground"
+                />
+              </span>{" "}
+              <span className="font-light text-primary" aria-hidden="true">
                 <SplitText
                   text={content.titleLast}
                   splitType="chars"
@@ -84,6 +86,7 @@ export const Hero = () => {
                   className="text-primary"
                 />
               </span>
+              <span className="sr-only">{content.titleFirst} {content.titleLast}</span>
             </h1>
 
             {/* Description */}
@@ -199,7 +202,8 @@ export const Hero = () => {
                         href="https://www.linkedin.com/in/victor-lima-fernandes"
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary"
+                        aria-label={locale === "pt" ? "LinkedIn (abre em nova aba)" : "LinkedIn (opens in new tab)"}
+                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <Linkedin className="h-4 w-4 text-primary" />
                       </a>
@@ -207,7 +211,8 @@ export const Hero = () => {
                         href="https://github.com/victorlfdev"
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary"
+                        aria-label={locale === "pt" ? "GitHub (abre em nova aba)" : "GitHub (opens in new tab)"}
+                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <Github className="h-4 w-4 text-primary" />
                       </a>
@@ -225,10 +230,11 @@ export const Hero = () => {
                       <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                         {content.liveProjectLabel}
                       </p>
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-2 w-2 motion-safe:animate-ping rounded-full bg-green-400 opacity-75" />
+                          <span className="relative flex h-2 w-2" aria-hidden="true">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-safe:animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite]" />
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
                       </span>
+                      <span className="sr-only">{locale === "pt" ? "Projeto em produção" : "Project live in production"}</span>
                     </div>
                     <p className="mt-1 text-sm font-medium text-foreground">
                       {content.liveProjectText}

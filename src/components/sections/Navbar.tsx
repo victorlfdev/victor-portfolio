@@ -83,7 +83,7 @@ export const Navbar = () => {
 
           <a
             href="#contato-contact"
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:shadow-elegant transition-all duration-300 ease-smooth hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:shadow-elegant transition-all duration-300 ease-smooth hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {content.navbar.contact}
           </a>
