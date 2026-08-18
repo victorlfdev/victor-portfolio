@@ -2,183 +2,249 @@ import { ArrowRight, Github, Linkedin, MapPin, Sparkles } from "lucide-react";
 import profilePhoto from "@/assets/victor-profile.jpg";
 import { useLanguage } from "@/components/language-provider";
 import { getPortfolioContent } from "@/content/portfolio-content";
+import { useTheme } from "next-themes";
+import DotGrid from "@/components/ui/react-bits/DotGrid/DotGrid";
+import SplitText from "@/components/ui/react-bits/SplitText/SplitText";
+import SpotlightCard from "@/components/ui/react-bits/SpotlightCard/SpotlightCard";
+import { OnMountFadeIn } from "@/components/ui/react-bits/OnMountFadeIn/OnMountFadeIn";
 
 export const Hero = () => {
   const { locale } = useLanguage();
+  const { resolvedTheme } = useTheme();
   const content = getPortfolioContent(locale).hero;
+  const isDark = resolvedTheme === "dark";
+  const dotBase = isDark ? "hsl(224 42% 25%)" : "hsl(226, 15%, 67%)";
+  const dotActive = isDark ? "hsl(191 88% 52%)" : "hsl(192 88% 34%)";
+  const spotlightColor = isDark
+    ? "rgba(0, 210, 255, 0.35)"
+    : "rgba(26, 163, 230, 0.25)";
 
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-gradient-hero pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative flex min-h-screen items-center overflow-hidden"
     >
-      {/* Subtle grid pattern for depth */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.12] dark:opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
+      <div className="z-0" style={{ position: "absolute", inset: 0 }}>
+        <DotGrid
+          dotSize={2}
+          gap={24}
+          baseColor={dotBase}
+          activeColor={dotActive}
+          proximity={120}
+          speedTrigger={80}
+          shockRadius={200}
+          shockStrength={3}
+          className="opacity-60"
+        />
+      </div>
 
-      <div className="relative mx-auto grid max-w-6xl items-start gap-12 px-6 md:grid-cols-[1.15fr_1fr] md:gap-8">
-        {/* Left column — content */}
-        <div className="text-left">
-          {/* Badge */}
-          <span
-            data-hero-animate="badge"
-            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
-            {content.badge}
-          </span>
-
-          {/* Headline */}
-          <h1
-            data-hero-animate="title"
-            className="mt-6 font-display text-5xl font-medium leading-[0.95] text-foreground sm:text-6xl md:text-7xl"
-          >
-            {content.titleFirst}{" "}
-            <span className="block italic font-light text-primary">{content.titleLast}</span>
-          </h1>
-
-          {/* Description */}
-          <p
-            data-hero-animate="text"
-            className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-          >
-            {content.description}
-          </p>
-
-          {/* CTAs */}
-          <div
-            data-hero-animate="actions"
-            className="mt-8 flex items-center gap-3"
-          >
-            <a
-              href="#projetos"
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-soft transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-elegant"
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-6 pt-28 md:px-8 md:py-32">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
+          {/* Left column — content */}
+          <div className="text-left">
+            {/* Badge */}
+            <OnMountFadeIn
+              delay={0.2}
+              direction="up"
+              className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-4 py-2 text-xs font-medium text-muted-foreground backdrop-blur"
             >
-              {content.primaryCta}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#contato-contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-secondary"
-            >
-              {content.secondaryCta}
-            </a>
-          </div>
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              {content.badge}
+            </OnMountFadeIn>
 
-          {/* Meta — location + tech chips */}
-          <div
-            data-hero-animate="meta"
-            className="mt-8 flex flex-wrap items-center gap-3 text-xs text-muted-foreground"
-          >
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" /> {content.location}
-            </span>
-            {content.chips.map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border/70 px-3 py-1"
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Right column — profile photo card */}
-        <div data-hero-animate="panel" className="relative mt-8 md:mt-0">
-          <div className="group relative w-full max-w-[420px]">
-            {/* Subtle tilt accent */}
-            <div
-              aria-hidden
-              className="absolute -right-3 -top-3 -z-10 rotate-1 rounded-[2rem] bg-gradient-accent p-[1px] shadow-elegant transition-transform duration-700 ease-smooth group-hover:translate-x-2 group-hover:-translate-y-2"
-            />
-
-            <div className="relative overflow-hidden rounded-[2rem] border border-border/80 bg-card/95 shadow-soft transition-transform duration-700 ease-smooth group-hover:-translate-y-2 group-hover:translate-x-1">
-              {/* Photo */}
-              <div className="relative h-[340px] w-full overflow-hidden bg-secondary">
-                <img
-                  src={profilePhoto}
-                  alt="Foto de perfil de Victor Lima Fernandes"
-                  className="h-full w-full object-cover object-center object-top transition-transform duration-700 ease-smooth group-hover:scale-[1.03]"
-                  loading="eager"
+            {/* Headline */}
+            <h1 className="mt-6 font-display text-5xl font-medium leading-[0.95] text-foreground sm:text-6xl md:text-[5.5rem]">
+              <SplitText
+                text={content.titleFirst}
+                splitType="chars"
+                delay={40}
+                duration={1}
+                ease="power3.out"
+                from={{ opacity: 0, y: 60, rotateX: -40 }}
+                to={{ opacity: 1, y: 0, rotateX: 0 }}
+                threshold={0.8}
+                rootMargin="0px"
+                tag="span"
+                textAlign="left"
+                className="text-foreground"
+              />{" "}
+              <span className="font-light text-primary">
+                <SplitText
+                  text={content.titleLast}
+                  splitType="chars"
+                  delay={40}
+                  duration={1}
+                  ease="power3.out"
+                  from={{ opacity: 0, y: 60, rotateX: -40 }}
+                  to={{ opacity: 1, y: 0, rotateX: 0 }}
+                  threshold={0.8}
+                  rootMargin="0px"
+                  tag="span"
+                  textAlign="left"
+                  className="text-primary"
                 />
-                {/* Gradient overlay at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent" />
+              </span>
+            </h1>
 
-                {/* Nameplate overlay */}
-                <div className="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-card/70 px-4 py-3 backdrop-blur">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                    {content.profileTag}
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-foreground">
-                    {content.profileTagline}
-                  </p>
-                </div>
-              </div>
+            {/* Description */}
+            <OnMountFadeIn
+              delay={0.5}
+              direction="up"
+              className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
+            >
+              {content.description}
+            </OnMountFadeIn>
 
-              {/* Social links — compact, bottom row */}
-              <div className="grid gap-3 border-t border-border/80 p-5">
-                <div className="flex items-center gap-3">
-                  {/* Profile snippet */}
-                  <div className="min-w-0 flex-1 rounded-lg bg-secondary/60 px-3 py-2">
-                    <p className="font-mono text-xs text-muted-foreground">
-                      <span className="text-primary">const</span>{" "}
-                      <span className="text-foreground">{content.profileFile}</span>
-                    </p>
-                  </div>
-                  {/* Socials */}
-                  <div className="flex gap-2">
-                    <a
-                      href="https://www.linkedin.com/in/victor-lima-fernandes"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="grid h-9 w-9 place-items-center rounded-lg border border-border/80 bg-background/60 transition-colors hover:bg-secondary"
-                    >
-                      <Linkedin className="h-4 w-4 text-primary" />
-                    </a>
-                    <a
-                      href="https://github.com/victorlfdev"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="grid h-9 w-9 place-items-center rounded-lg border border-border/80 bg-background/60 transition-colors hover:bg-secondary"
-                    >
-                      <Github className="h-4 w-4 text-primary" />
-                    </a>
-                  </div>
-                </div>
+            {/* CTAs */}
+            <OnMountFadeIn
+              delay={0.7}
+              direction="up"
+              className="mt-8 flex items-center gap-4"
+            >
+              <a
+                href="#projetos"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30"
+              >
+                {content.primaryCta}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
+              </a>
+              <a
+                href="#contato-contact"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/40 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-secondary/80"
+              >
+                {content.secondaryCta}
+              </a>
+            </OnMountFadeIn>
 
-                {/* Live project */}
-                <a
-                  href="https://amplificamidias.com.br/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="rounded-2xl border border-border bg-background/80 p-4 transition-all hover:-translate-y-0.5 hover:shadow-soft"
+            {/* Meta — location + tech chips */}
+            <OnMountFadeIn
+              delay={0.9}
+              direction="up"
+              className="mt-8 flex flex-wrap items-center gap-3 text-sm text-muted-foreground"
+            >
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" /> {content.location}
+              </span>
+              <span className="text-border/40">·</span>
+              {content.chips.map((chip) => (
+                <span
+                  key={chip}
+                  className="rounded-full border border-border/50 px-3.5 py-1.5 text-xs font-medium"
                 >
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                      {content.liveProjectLabel}
-                    </p>
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm font-medium text-foreground">
-                    {content.liveProjectText}
-                  </p>
-                </a>
-              </div>
-            </div>
+                  {chip}
+                </span>
+              ))}
+            </OnMountFadeIn>
           </div>
+
+          {/* Right column — profile photo card with spotlight */}
+          <OnMountFadeIn delay={0.3} direction="right" className="relative">
+            <div className="relative w-full max-w-[440px]">
+              {/* Decorative gradient blob behind card */}
+              <div
+                aria-hidden
+                className="absolute -inset-4 -z-10 translate-x-4 translate-y-4 rounded-[2.5rem] blur-2xl opacity-20"
+                style={
+                  isDark
+                    ? {
+                        background:
+                          "radial-gradient(circle at 30% 20%, hsl(191 88% 52% / 0.35), transparent 50%), radial-gradient(circle at 70% 80%, hsl(34 94% 57% / 0.25), transparent 40%)",
+                      }
+                    : {
+                        background:
+                          "radial-gradient(circle at 30% 20%, hsl(192 88% 34% / 0.25), transparent 50%), radial-gradient(circle at 70% 80%, hsl(34 94% 57% / 0.2), transparent 40%)",
+                      }
+                }
+              />
+
+              <SpotlightCard
+                className="rounded-[2rem] border border-border/70 bg-card/90 backdrop-blur-sm"
+                spotlightColor={spotlightColor}
+              >
+                {/* Photo */}
+                <div className="relative h-[360px] w-full overflow-hidden rounded-[2rem] bg-card/40">
+                  <img
+                    src={profilePhoto}
+                    alt="Foto de perfil de Victor Lima Fernandes"
+                    className="h-full w-full object-cover object-center object-top"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent" />
+
+                  {/* Nameplate overlay */}
+                  <div className="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-card/70 px-4 py-3 backdrop-blur">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {content.profileTag}
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-foreground">
+                      {content.profileTagline}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Social links + live project */}
+                <div className="grid gap-4 border-t border-border/60 p-5 pt-6">
+                  <div className="flex items-center gap-3">
+                    <div className="min-w-0 flex-1 rounded-lg bg-muted/50 px-3 py-2.5">
+                      <p className="font-mono text-xs text-muted-foreground">
+                        <span className="text-primary">const</span>{" "}
+                        <span className="text-foreground">
+                          {content.profileFile}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <a
+                        href="https://www.linkedin.com/in/victor-lima-fernandes"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary"
+                      >
+                        <Linkedin className="h-4 w-4 text-primary" />
+                      </a>
+                      <a
+                        href="https://github.com/victorlfdev"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="grid h-10 w-10 place-items-center rounded-lg border border-border/70 bg-background/50 transition-colors hover:bg-secondary"
+                      >
+                        <Github className="h-4 w-4 text-primary" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Live project */}
+                  <a
+                    href="https://amplificamidias.com.br/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="rounded-2xl border border-border/60 bg-background/60 p-4 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                  >
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                        {content.liveProjectLabel}
+                      </p>
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-green-400 opacity-75" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm font-medium text-foreground">
+                      {content.liveProjectText}
+                    </p>
+                  </a>
+                </div>
+              </SpotlightCard>
+            </div>
+          </OnMountFadeIn>
         </div>
       </div>
+
+      {/* Bottom gradient fade */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent"
+      />
     </section>
   );
 };
