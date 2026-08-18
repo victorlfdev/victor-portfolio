@@ -5,6 +5,24 @@ import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
 gsap.registerPlugin(InertiaPlugin);
 
+declare global {
+  interface HTMLElement {
+    __dotGridVisible__?: boolean;
+  }
+}
+
+const observer = typeof IntersectionObserver !== 'undefined'
+  ? new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).__dotGridVisible__ = true;
+        } else {
+          (entry.target as HTMLElement).__dotGridVisible__ = false;
+        }
+      }
+    }, { threshold: 0 })
+  : null;
+
 const throttle = (func: (...args: unknown[]) => void, limit: number) => {
   let lastCall = 0;
   return function (this: unknown, ...args: unknown[]) {
@@ -159,6 +177,12 @@ const DotGrid: React.FC<DotGridProps> = ({
     const proxSq = proximity * proximity;
 
     const draw = () => {
+      const wrapper = wrapperRef.current;
+      if (!wrapper.__dotGridVisible__) {
+        rafId = requestAnimationFrame(draw);
+        return;
+      }
+
       const canvas = canvasRef.current;
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
@@ -207,9 +231,11 @@ const DotGrid: React.FC<DotGridProps> = ({
     } else {
       (window as Window).addEventListener('resize', buildGrid);
     }
+    observer?.observe(wrapperRef.current);
     return () => {
       if (ro) ro.disconnect();
       else window.removeEventListener('resize', buildGrid);
+      observer?.unobserve(wrapperRef.current);
     };
   }, [buildGrid]);
 

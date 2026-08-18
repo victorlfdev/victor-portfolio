@@ -186,4 +186,35 @@
   .font-mono {
     font-family: "JetBrains Mono", monospace;
   }
+
+  /* Fluid heading sizes — smooth clamp() scaling, no breakpoint steps */
+  .heading-hero {
+    font-size: clamp(3.2rem, 3.5vw + 1.2rem, 5.5rem);
+    line-height: 0.95;
+  }
+
+  .heading-about {
+    font-size: clamp(3.5rem, 4.5vw + 1.2rem, 7rem);
+    line-height: 1.05;
+  }
+
+  .heading-section {
+    font-size: clamp(2.6rem, 2vw + 1.6rem, 3.5rem);
+    line-height: 1.1;
+  }
+
+  .heading-section-sm {
+    font-size: clamp(2rem, 1.4vw + 1.2rem, 2.5rem);
+    line-height: 1.1;
+  }
+
+  .heading-card-title {
+    font-size: clamp(1.5rem, 1vw + 1.1rem, 1.75rem);
+    line-height: 1.2;
+  }
+
+  .heading-contact {
+    font-size: clamp(2.6rem, 2.2vw + 1.6rem, 3.75rem);
+    line-height: 1.02;
+  }
 }

@@ -24,7 +24,7 @@ export const Hero = () => {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden"
     >
-      <div className="z-0" style={{ position: "absolute", inset: 0 }}>
+      <div className="z-0 pointer-events-none" style={{ position: "absolute", inset: 0 }}>
         <DotGrid
           dotSize={2}
           gap={24}
@@ -53,7 +53,7 @@ export const Hero = () => {
             </OnMountFadeIn>
 
             {/* Headline */}
-            <h1 className="mt-6 font-display text-5xl font-medium leading-[0.95] text-foreground sm:text-6xl md:text-[5.5rem]">
+            <h1 aria-label={content.titleFirst + ' ' + content.titleLast} className="mt-6 heading-hero font-display font-medium text-foreground">
               <SplitText
                 text={content.titleFirst}
                 splitType="chars"
@@ -103,14 +103,14 @@ export const Hero = () => {
             >
               <a
                 href="#projetos"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {content.primaryCta}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
               </a>
               <a
                 href="#contato-contact"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/40 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-secondary/80"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/40 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {content.secondaryCta}
               </a>
@@ -162,9 +162,10 @@ export const Hero = () => {
                 spotlightColor={spotlightColor}
               >
                 {/* Photo */}
-                <div className="relative h-[360px] w-full overflow-hidden rounded-[2rem] bg-card/40">
+                <div className="relative w-full overflow-hidden rounded-[2rem] bg-card/40" style={{ minHeight: '280px', maxHeight: '480px', height: 'clamp(280px, 50vw, 480px)' }}>
                   <img
-                    src={profilePhoto}
+                    src={`${profilePhoto}`}
+                    srcset={`${profilePhoto} 1x, ${profilePhoto} 2x`}
                     alt="Foto de perfil de Victor Lima Fernandes"
                     className="h-full w-full object-cover object-center object-top"
                     loading="eager"
@@ -225,7 +226,7 @@ export const Hero = () => {
                         {content.liveProjectLabel}
                       </p>
                       <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-green-400 opacity-75" />
+                        <span className="absolute inline-flex h-2 w-2 motion-safe:animate-ping rounded-full bg-green-400 opacity-75" />
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
                       </span>
                     </div>

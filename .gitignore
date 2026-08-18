@@ -42,3 +42,7 @@ coverage/
 # Impeccable & Piolium
 .impeccable/
 piolium/
+.opencode
+.pi
+.claude
+.hermes

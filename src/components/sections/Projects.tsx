@@ -14,7 +14,7 @@ export const Projects = () => {
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
               {content.eyebrow}
             </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 heading-section font-display text-foreground">
               {content.titleBefore}
               <span className="italic text-primary">
                 {content.titleEmphasis}
@@ -102,7 +102,7 @@ export const Projects = () => {
                       </span>
                     )}
                   </div>
-                  <h3 className="mt-2 font-display text-2xl text-foreground">
+                  <h3 className="mt-2 heading-card-title font-display text-foreground">
                     {p.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

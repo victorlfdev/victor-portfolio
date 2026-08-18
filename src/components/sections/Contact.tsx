@@ -54,7 +54,7 @@ export const Contact = () => {
               <p className="text-xs uppercase tracking-[0.18em] text-white/70">
                 {content.eyebrow}
               </p>
-              <h2 className="mt-4 font-display text-4xl leading-[1.02] text-white sm:text-5xl md:text-6xl">
+              <h2 className="mt-4 heading-contact font-display text-white">
                 {content.titleBefore}
                 <span className="italic">{content.titleEmphasis}</span>
               </h2>
@@ -88,7 +88,7 @@ export const Contact = () => {
                 <div className="h-4 w-px bg-white/20" />
                 <a
                   href={content.channels[0].href}
-                  className="group/cta inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium text-white transition-colors hover:text-white/90"
+                  className="group/cta inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium text-white transition-colors hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 >
                   {locale === "pt" ? "Enviar email" : "Send email"}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5" />

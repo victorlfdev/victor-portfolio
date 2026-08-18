@@ -36,7 +36,7 @@ export const Skills = () => {
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
               {content.eyebrow}
             </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-foreground sm:text-5xl">
+            <h2 className="mt-4 heading-section font-display text-foreground">
               {content.titleBefore}
               <span className="italic text-primary">{content.titleEmphasis}</span>
             </h2>
@@ -102,7 +102,7 @@ export const Skills = () => {
         <div className="mt-12 md:mt-16 reveal" style={{ transitionDelay: "250ms" }}>
           <div className="flex items-center gap-3">
             <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
+            <span className="font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground/40">
               {content.footer}
             </span>
             <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />

@@ -41,7 +41,7 @@ export const About = () => {
         {/* Headline — breaks out to full width, larger and bolder */}
         <h2
           id="sobre-titulo"
-          className="reveal mt-4 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl md:text-7xl md:leading-[1.0]"
+          className="reveal mt-4 heading-about font-display text-foreground"
         >
           {content.titleBefore}
           <span className="italic text-primary">{content.titleEmphasis}</span>
