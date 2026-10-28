@@ -14,7 +14,6 @@ Uma landing single-page com todas as seções — sobre mim, habilidades, projet
 - **Animações de entrada:** reveal on scroll com hooks customizados
 - **Roteamento:** React Router com página 404
 - **Base de componentes:** shadcn/ui + Radix UI
-- **Query cache:** TanStack Query para dados assíncronos
 - **Scroll suave:** Lenis como smooth-scroll engine
 - **Acessibilidade:** semântica HTML, labels ARIA e foco visível
 
@@ -28,7 +27,6 @@ Uma landing single-page com todas as seções — sobre mim, habilidades, projet
 | Estilização   | Tailwind CSS 3           |
 | Componentes   | shadcn/ui + Radix UI     |
 | Roteamento    | React Router 7           |
-| Query         | TanStack Query           |
 | Smooth scroll | Lenis                    |
 | Testes        | Vitest + Testing Library |
 | Linter        | ESLint 9                 |
@@ -38,13 +36,13 @@ Uma landing single-page com todas as seções — sobre mim, habilidades, projet
 
 ### Pré-requisitos
 
-- Node.js 18+
+- Node.js 22.12+ (ou 24+)
 - `npm` ou `bun`
 
 ### Instalação
 
 ```bash
-npm install
+npm ci
 # ou
 bun install
 ```
@@ -73,8 +71,10 @@ npm run preview
 
 ```bash
 npm run lint    # ESLint
+npm run typecheck  # TypeScript (app e configuração)
 npm run test    # Vitest (run once)
 npm run test:watch  # Vitest (watch mode)
+npm run test:e2e  # Build + fluxos no navegador
 ```
 
 ## Estrutura de diretórios
@@ -119,11 +119,16 @@ O conteúdo é tipado e exportado como `portfolioContent` com a função `getPor
 | `npm run build:dev`  | Build em modo development          |
 | `npm run preview`    | Serve a build localmente           |
 | `npm run lint`       | ESLint                             |
+| `npm run typecheck`  | Verificação de tipos               |
 | `npm run test`       | Vitest (execução única)            |
 | `npm run test:watch` | Vitest (watch mode)                |
+| `npm run test:e2e`   | Build e validação com Playwright   |
 
 ## Notas
 
 - O idioma selecionado persiste no `localStorage` do navegador.
 - O tema padrão é escuro.
-- O repositório inclui `package-lock.json` e `bun.lock` — funcione com `npm` ou `bun` sem conflito.
+- As prévias dos projetos usam imagens locais; os sites publicados abrem em outra aba.
+- As animações respeitam a preferência de movimento reduzido do sistema.
+- `npm run test:e2e` usa Chromium do Playwright (instale com `npx playwright install chromium`) ou Microsoft Edge instalado. Use `PLAYWRIGHT_CHANNEL` para escolher outro canal. As capturas ficam em `.impeccable/`.
+- Ao atualizar dependências, mantenha `package-lock.json` e `bun.lock` sincronizados. A validação principal usa `npm ci`.

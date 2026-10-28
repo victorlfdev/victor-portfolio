@@ -2,66 +2,42 @@ import { useEffect } from "react";
 
 export function useReveal() {
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const heroSection = document.querySelector<HTMLElement>("#top");
-    const revealElements = document.querySelectorAll<HTMLElement>(".reveal");
-
-    if (reduceMotion) {
-      revealElements.forEach((element) => element.classList.add("is-visible"));
-
-      if (heroSection) {
-        const heroTargets = heroSection.querySelectorAll<HTMLElement>("[data-hero-animate]");
-        heroTargets.forEach((element) => element.classList.add("is-visible"));
-      }
-
+    const elements = document.querySelectorAll<HTMLElement>(".reveal");
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const showAll = () => {
+      elements.forEach((element) => {
+        element.classList.remove("reveal-pending");
+        element.classList.add("is-visible");
+      });
+    };
+    if (media.matches || !("IntersectionObserver" in window)) {
+      showAll();
       return;
     }
-
-    if (heroSection) {
-      const heroTargets = Array.from(
-        heroSection.querySelectorAll<HTMLElement>("[data-hero-animate]")
-      );
-
-      heroTargets.forEach((element, index) => {
-        element.classList.remove("is-visible");
-        element.style.transitionDelay = `${index * 90}ms`;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("reveal-pending");
+          entry.target.classList.add("is-visible");
+          observer?.unobserve(entry.target);
+        }
       });
-
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          heroTargets.forEach((element) => element.classList.add("is-visible"));
-        });
-      });
-    }
-
-    revealElements.forEach((element) => {
-      element.classList.remove("is-visible");
-      element.style.transitionDelay = "";
+    }, { threshold: 0, rootMargin: "0px 0px -32px 0px" });
+    elements.forEach((element) => {
+      element.classList.add("reveal-pending");
+      observer?.observe(element);
     });
-
-    if (!("IntersectionObserver" in window)) {
-      revealElements.forEach((element) => element.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const element = entry.target as HTMLElement;
-            element.classList.add("is-visible");
-            observer.unobserve(element);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -6% 0px",
+    const onMotionChange = () => {
+      if (media.matches) {
+        observer.disconnect();
+        showAll();
       }
-    );
-
-    revealElements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
+    };
+    media.addEventListener("change", onMotionChange);
+    return () => {
+      observer?.disconnect();
+      media.removeEventListener("change", onMotionChange);
+      elements.forEach((element) => element.classList.remove("reveal-pending"));
+    };
   }, []);
 }

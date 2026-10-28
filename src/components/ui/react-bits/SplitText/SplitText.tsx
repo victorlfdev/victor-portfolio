@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText as GSAPSplitText } from 'gsap/SplitText';
-import { useGSAP } from '@gsap/react';
+import { useRef, type CSSProperties, type ElementType } from "react";
+import { gsap } from "gsap";
+import { SplitText as GSAPSplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
+gsap.registerPlugin(GSAPSplitText, useGSAP);
 
 export interface SplitTextProps {
   text: string;
@@ -12,180 +11,65 @@ export interface SplitTextProps {
   delay?: number;
   duration?: number;
   ease?: string | ((t: number) => number);
-  splitType?: 'chars' | 'words' | 'lines' | 'words, chars';
+  splitType?: "chars" | "words" | "lines" | "words, chars";
   from?: gsap.TweenVars;
   to?: gsap.TweenVars;
   threshold?: number;
   rootMargin?: string;
-  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
-  textAlign?: React.CSSProperties['textAlign'];
+  tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  textAlign?: CSSProperties["textAlign"];
   onLetterAnimationComplete?: () => void;
 }
 
-const SplitText: React.FC<SplitTextProps> = ({
-  text,
-  className = '',
-  delay = 50,
-  duration = 1.25,
-  ease = 'power3.out',
-  splitType = 'chars',
-  from = { opacity: 0, y: 40 },
-  to = { opacity: 1, y: 0 },
-  threshold = 0.1,
-  rootMargin = '-100px',
-  tag = 'p',
-  textAlign = 'center',
-  onLetterAnimationComplete,
-}) => {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const animationCompletedRef = useRef(false);
+export default function SplitText({ text, className = "", delay = 40, duration = 0.8,
+  ease = "power3.out", splitType = "chars", from = { opacity: 0, y: 40 },
+  to = { opacity: 1, y: 0 }, threshold = 0.1, rootMargin = "0px", tag = "p",
+  textAlign = "left", onLetterAnimationComplete,
+}: SplitTextProps) {
+  const ref = useRef<HTMLHeadingElement>(null);
   const onCompleteRef = useRef(onLetterAnimationComplete);
-  const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
+  onCompleteRef.current = onLetterAnimationComplete;
+  const fromKey = JSON.stringify(from);
+  const toKey = JSON.stringify(to);
 
-  useEffect(() => {
-    onCompleteRef.current = onLetterAnimationComplete;
-  }, [onLetterAnimationComplete]);
-
-  useEffect(() => {
-    onCompleteRef.current = onLetterAnimationComplete;
-  }, [onLetterAnimationComplete]);
-
-  useEffect(() => {
-    if (document.fonts.status === 'loaded') {
-      setFontsLoaded(true);
-    } else {
-      document.fonts.ready.then(() => {
-        setFontsLoaded(true);
+  useGSAP(() => {
+    const element = ref.current;
+    if (!element || !text) return;
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const split = new GSAPSplitText(element, {
+        type: splitType, smartWrap: true,
+        charsClass: "split-char", wordsClass: "split-word", linesClass: "split-line",
       });
-    }
-  }, []);
-
-  useGSAP(
-    () => {
-      if (!ref.current || !text || !fontsLoaded) return;
-      if (animationCompletedRef.current) return;
-      const el = ref.current as HTMLElement & {
-        _rbsplitInstance?: GSAPSplitText;
-      };
-
-      if (el._rbsplitInstance) {
-        try {
-          el._rbsplitInstance.revert();
-        } catch (err) {
-          void err;
-        }
-        el._rbsplitInstance = undefined;
-      }
-
-      const startPct = (1 - threshold) * 100;
-      const marginMatch = /^(-?\\d+(?:\\.\\d+)?)(px|em|rem|%)?$/.exec(rootMargin);
-      const marginValue = marginMatch ? parseFloat(marginMatch[1]) : 0;
-      const marginUnit = marginMatch ? marginMatch[2] || 'px' : 'px';
-      const sign =
-        marginValue === 0
-          ? ''
-          : marginValue < 0
-            ? `-=${Math.abs(marginValue)}${marginUnit}`
-            : `+=${marginValue}${marginUnit}`;
-      const start = `top ${startPct}%${sign}`;
-      let targets: Element[] = [];
-      const assignTargets = (self: GSAPSplitText) => {
-        if (splitType.includes('chars') && (self as GSAPSplitText).chars?.length)
-          targets = (self as GSAPSplitText).chars;
-        if (!targets.length && splitType.includes('words') && self.words.length) targets = self.words;
-        if (!targets.length && splitType.includes('lines') && self.lines.length) targets = self.lines;
-        if (!targets.length) targets = self.chars || self.words || self.lines;
-      };
-      const splitInstance = new GSAPSplitText(el, {
-        type: splitType,
-        smartWrap: true,
-        autoSplit: splitType === 'lines',
-        linesClass: 'split-line',
-        wordsClass: 'split-word',
-        charsClass: 'split-char',
-        reduceWhiteSpace: false,
-        onSplit: (self: GSAPSplitText) => {
-          assignTargets(self);
-          const observer = new IntersectionObserver(
-            (entries) => {
-              for (const entry of entries) {
-                if (entry.isIntersecting && !animationCompletedRef.current) {
-                  gsap.fromTo(
-                    targets,
-                    { ...from },
-                    {
-                      ...to,
-                      duration,
-                      ease,
-                      stagger: delay / 1000,
-                      onComplete: () => {
-                        animationCompletedRef.current = true;
-                        onCompleteRef.current?.();
-                      },
-                      willChange: 'transform, opacity',
-                      force3D: true,
-                    }
-                  );
-                  observer.disconnect();
-                  return;
-                }
-              }
-            },
-            { threshold, rootMargin }
-          );
-          observer.observe(el);
-          (el as HTMLElement & { _rbsplitObserver?: IntersectionObserver })._rbsplitObserver = observer;
-        },
-      });
-      el._rbsplitInstance = splitInstance;
-      return () => {
-        ScrollTrigger.getAll().forEach((st) => {
-          if (st.trigger === el) st.kill();
+      const targets = splitType.includes("chars") ? split.chars : splitType.includes("words") ? split.words : split.lines;
+      let tween: gsap.core.Tween | undefined;
+      let observer: IntersectionObserver | undefined;
+      const animate = () => {
+        tween = gsap.fromTo(targets, JSON.parse(fromKey), {
+          ...JSON.parse(toKey), duration, ease, stagger: delay / 1000,
+          onComplete: () => onCompleteRef.current?.(),
         });
-        const ho = (el as HTMLElement & { _rbsplitObserver?: IntersectionObserver })._rbsplitObserver;
-        if (ho) ho.disconnect();
-        try {
-          splitInstance.revert();
-        } catch (err) {
-          void err;
-        }
-        el._rbsplitInstance = undefined;
       };
-    },
-    {
-      dependencies: [
-        text,
-        delay,
-        duration,
-        ease,
-        splitType,
-        JSON.stringify(from),
-        JSON.stringify(to),
-        threshold,
-        rootMargin,
-        fontsLoaded,
-      ],
-      scope: ref,
-    }
-  );
+      if ("IntersectionObserver" in window) {
+        observer = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            animate();
+            observer?.disconnect();
+          }
+        }, { threshold, rootMargin });
+        observer.observe(element);
+      } else {
+        animate();
+      }
+      return () => {
+        observer?.disconnect();
+        tween?.kill();
+        split.revert();
+      };
+    });
+    return () => media.revert();
+  }, { scope: ref, dependencies: [text, delay, duration, ease, splitType, fromKey, toKey, threshold, rootMargin], revertOnUpdate: true });
 
-  const renderTag = () => {
-    const style: React.CSSProperties = {
-      textAlign,
-      wordWrap: 'break-word',
-      willChange: 'transform, opacity',
-    };
-    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
-    const Tag = (tag || 'p') as React.ElementType;
-
-    return (
-      <Tag ref={ref} style={style} className={classes}>
-        {text}
-      </Tag>
-    );
-  };
-
-  return renderTag();
-};
-
-export default SplitText;
+  const Tag: ElementType = tag;
+  return <Tag ref={ref} style={{ textAlign }} className={`split-parent inline-block ${className}`}>{text}</Tag>;
+}

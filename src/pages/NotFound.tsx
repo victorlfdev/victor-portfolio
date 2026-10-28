@@ -1,23 +1,24 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "@/components/language-provider";
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
+  const { locale } = useLanguage();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
+    <main className="flex min-h-svh items-center justify-center bg-background px-6 font-sans-pretty">
+      <div className="max-w-lg text-center">
+        <p className="font-display text-8xl font-light text-primary">404</p>
+        <h1 className="mt-6 text-3xl font-medium text-foreground">
+          {locale === "pt" ? "Página não encontrada" : "Page not found"}
+        </h1>
+        <p className="mt-4 text-muted-foreground">
+          {locale === "pt" ? "Este endereço não existe. Volte ao portfólio para conhecer meus projetos e entrar em contato." : "This address does not exist. Return to the portfolio to explore my projects and get in touch."}
+        </p>
+        <Link to="/" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-2xl bg-primary px-6 py-3 font-medium text-primary-foreground">
+          <ArrowLeft className="size-4" />{locale === "pt" ? "Voltar ao início" : "Back to home"}
+        </Link>
       </div>
-    </div>
+    </main>
   );
 };
 

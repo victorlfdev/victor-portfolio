@@ -2,7 +2,7 @@
 name: Victor Lima Fernandes — Portfolio
 description: Client-facing developer portfolio with a product-minded, delivery-first visual system.
 colors:
-  primary: "hsl(192 88% 34%)"
+  primary: "hsl(192 88% 31%)"
   primary-light: "hsl(191 88% 52%)"
   accent: "hsl(34 94% 57%)"
   background-light: "hsl(210 33% 98%)"
@@ -108,7 +108,7 @@ Glass and blur appear on interactive surfaces only (the navbar on scroll, hover 
 The palette is built on cool neutrals with two accent roles: a cyan that drives primary action, and a warm amber that appears only in gradients and small highlights. All values are stored as HSL in CSS custom properties.
 
 ### Primary
-- **Cyan Blueprint** (`hsl(192 88% 34%)` light / `hsl(191 88% 52%)` dark): The only structural accent. Used for CTAs, the ring focus state, gradient stops, and the favicon dot. Appears on ≤10% of any screen.
+- **Cyan Blueprint** (`hsl(192 88% 31%)` light / `hsl(191 88% 52%)` dark): The only structural accent. The light theme uses a darker value to preserve readable text and button contrast. Used for CTAs and structural emphasis. Appears on ≤10% of any screen.
 - **Cyan Glow** (`hsl(191 88% 44%)` light / `hsl(191 88% 40%)` dark): A brighter variant of Cyan Blueprint used in ambient gradients and the glow shadow. Never as standalone text.
 
 **The One Accent Rule.** Cyan Blueprint is the only solid accent color on the page. Amber Spark is reserved for gradients, the favicon, and micro-highlights — it never appears as a standalone fill or text color.
@@ -211,12 +211,12 @@ Borders are thin and present at `--border` (`hsl(216 24% 86%)` light / `hsl(223 
 - **Default state:** Transparent background, 5px vertical padding.
 - **Scrolled state (Glass):** `hsl(var(--background)) / 0.6` with `blur(14px)` backdrop-filter, 12px vertical padding, soft shadow.
 - **Typography:** Space Grotesk 600 for brand mark ("vlf."), 14px for links. Links are `hsl(var(--muted-foreground))` at rest, `hsl(var(--foreground))` on hover.
-- **Mobile:** Hidden on screens below `md` breakpoint.
+- **Mobile:** Links open in an inline disclosure below the navbar, with 44px controls, Escape to close, and dismissal after choosing a section.
 
 ### Project Cards
 - **Structure:** Full-bleed media (16:10 aspect ratio) on top, content area below. Media area has a gradient overlay at the bottom for the stack labels.
 - **Tier system:** `shipped` projects have a 3px cyan accent line at the top edge and a "Shipped" badge next to the category label. `prototype` projects have a "Prototype" badge. Other tiers render without special indicators.
-- **Media:** Image or `<video>` with `object-cover`, `object-top` alignment. 3% scale-up on hover.
+- **Media:** Local project screenshots with lazy loading and `object-cover`, `object-top` alignment. Published sites have a separate visit link; no third-party frames are loaded. 3% scale-up on hover, disabled for reduced motion.
 - **Stack labels:** Positioned absolutely at the bottom of the media area, pill-shaped, 32px radius, semi-transparent background with backdrop blur.
 - **Content area:** 24px padding, category label + tier badge row, title in display weight, description 14px muted foreground.
 - **CTA:** `hsl(var(--foreground))` text (not primary) with an ArrowUpRight icon that translates right on hover. Hover state: text shifts to primary with underline.
@@ -230,9 +230,9 @@ Borders are thin and present at `--border` (`hsl(216 24% 86%)` light / `hsl(223 
 - **Ambient glow:** Decorative circle element (`bg-accent/30`, `blur-3xl`) positioned top-right behind the content.
 
 ### Skills Grid
-- **Layout:** 4-column grid on desktop (`md:grid-cols-4`), 3-column on small screens (`sm:grid-cols-3`), 2-column on mobile (`grid-cols-2`).
-- **Cell:** 24px radius, 20px padding, icon in a rounded square (`bg-secondary` at rest, `bg-primary` on hover), 16px label text.
-- **Background:** Section has a `bg-secondary/40` tint for visual separation from adjacent sections.
+- **Layout:** 4-column grid on desktop (`lg:grid-cols-4`), 3-column on small screens (`sm:grid-cols-3`), 2-column on mobile (`grid-cols-2`).
+- **Cell:** An open row with a top border, technology name, labeled experience tier, and context always visible to touch, keyboard, and mouse users.
+- **Background:** Section has a `bg-secondary/30` tint for visual separation from adjacent sections.
 
 ## Do's and Don'ts
 

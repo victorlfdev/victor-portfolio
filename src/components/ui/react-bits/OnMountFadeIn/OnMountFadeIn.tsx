@@ -1,5 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 interface OnMountFadeInProps {
   children: React.ReactNode;
@@ -18,18 +21,18 @@ export const OnMountFadeIn = ({
 }: OnMountFadeInProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const el = ref.current;
     if (!el) return;
 
-    const axis = direction === "right" ? "x" : direction === "left" ? "-x" : "x";
-    const dist = direction === "up" ? -40 : direction === "down" ? 40 : direction === "left" ? 40 : -40;
+    const dist = direction === "up" || direction === "left" ? 24 : -24;
     const y = direction === "up" || direction === "down" ? dist : 0;
     const x = direction === "up" || direction === "down" ? 0 : dist;
 
-    gsap.fromTo(
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => { gsap.fromTo(
       el,
-      { opacity: 0, visibility: "visible", y, x, scale: 0.95 },
+      { opacity: 0, y, x },
       {
         opacity: 1,
         y: 0,
@@ -38,9 +41,11 @@ export const OnMountFadeIn = ({
         duration,
         delay,
         ease: "power3.out",
+        clearProps: "opacity,transform",
       }
-    );
-  }, [delay, duration, direction]);
+    ); });
+    return () => media.revert();
+  }, { scope: ref, dependencies: [delay, duration, direction], revertOnUpdate: true });
 
   return (
     <div ref={ref} className={className}>

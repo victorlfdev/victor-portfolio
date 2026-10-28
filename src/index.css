@@ -18,7 +18,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 224 42% 10%;
 
-    --primary: 192 88% 34%;
+    --primary: 192 88% 31%;
     --primary-foreground: 210 40% 98%;
     --primary-glow: 191 88% 44%;
 
@@ -95,12 +95,45 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.55) hsl(var(--background));
+    scrollbar-width: thin;
   }
 
   body {
     @apply bg-background text-foreground antialiased transition-colors duration-300;
     font-feature-settings: "ss01", "cv11";
   }
+
+  ::selection {
+    color: hsl(var(--primary-foreground));
+    background: hsl(var(--primary));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+  }
+
+  main:focus, section:focus { outline: none; }
+
+  h1, h2 { text-wrap: balance; }
+
+  .skip-link {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus { transform: translateY(0); }
+
+  .contact-panel { --gradient-accent: linear-gradient(135deg, hsl(224 42% 12%), hsl(192 88% 24%)); }
 }
 
 @layer utilities {
@@ -127,9 +160,12 @@
   }
 
   .reveal {
+    transition: opacity 0.6s var(--transition-smooth), transform 0.6s var(--transition-smooth);
+  }
+
+  .reveal.reveal-pending {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+    transform: translateY(16px);
   }
 
   .reveal.is-visible {
@@ -189,12 +225,13 @@
 
   /* Fluid heading sizes — smooth clamp() scaling, no breakpoint steps */
   .heading-hero {
-    font-size: clamp(3.2rem, 3.5vw + 1.2rem, 5.5rem);
-    line-height: 0.98;
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
   }
 
   .heading-about {
-    font-size: clamp(3.5rem, 4.5vw + 1.2rem, 7rem);
+    font-size: clamp(2.6rem, 4.5vw + 1rem, 5.5rem);
     line-height: 1.05;
   }
 
@@ -214,7 +251,7 @@
   }
 
   .heading-contact {
-    font-size: clamp(2.6rem, 2.2vw + 1.6rem, 3.75rem);
+    font-size: clamp(2rem, 2.2vw + 1rem, 3.5rem);
     line-height: 1.02;
   }
 
@@ -231,4 +268,18 @@
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(2px); }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal.reveal-pending, [data-hero-animate] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .animate-bob { animation: none; }
+  .project-card:hover, .project-card:focus-within,
+  a:hover, button:hover { transform: none; }
+  .project-card img { transition: none; transform: none; }
 }

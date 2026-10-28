@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight, Copy, Github, Linkedin, Mail, MapPin, Phone, Check } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { getPortfolioContent } from "@/content/portfolio-content";
 
@@ -18,35 +18,37 @@ export const Contact = () => {
   const { locale } = useLanguage();
   const content = getPortfolioContent(locale).contact;
   const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
+  const resetTimer = useRef<ReturnType<typeof setTimeout>>();
+  const emailChannel = content.channels.find((channel) => channel.icon === "mail")!;
+
+  useEffect(() => () => clearTimeout(resetTimer.current), []);
 
   const handleCopy = useCallback(async () => {
+    clearTimeout(resetTimer.current);
+    setCopyFailed(false);
     try {
-      await navigator.clipboard.writeText("victorlf2002@gmail.com");
+      await navigator.clipboard.writeText(emailChannel.value);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      resetTimer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard API blocked — fallback: nothing to do
+      setCopied(false);
+      setCopyFailed(true);
     }
-  }, []);
+  }, [emailChannel.value]);
 
   return (
     <section
       id="contato-contact"
       lang={locale}
-      className="py-24 md:py-32"
+      className="py-20 md:py-28"
       aria-label={locale === "pt" ? "Contato" : "Contact"}
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-6 md:px-8">
         <div
-          className="group relative overflow-hidden rounded-3xl bg-gradient-accent p-8 shadow-elegant transition-all duration-700 ease-smooth hover:-translate-y-1 hover:shadow-[0_30px_80px_-28px_hsl(191_88%_40%_/_0.35)] focus-within:-translate-y-1 focus-within:shadow-[0_30px_80px_-28px_hsl(191_88%_40%_/_0.35)] sm:p-12 md:p-16"
-          aria-hidden="false"
-          role="region"
+          className="contact-panel group relative overflow-hidden rounded-3xl bg-gradient-accent p-6 sm:p-10 md:p-12"
         >
           {/* Ambient glow */}
-          <div
-            aria-hidden
-            className="absolute -top-20 -right-20 h-[360px] w-[360px] rounded-full bg-accent/30 blur-3xl transition-opacity duration-700 ease-smooth group-hover:opacity-80"
-          />
 
           <div className="relative grid items-start gap-10 md:grid-cols-[1.15fr_1fr]">
             {/* Left column — text + CTA + socials */}
@@ -63,14 +65,12 @@ export const Contact = () => {
               </p>
 
               {/* CTA row — copy email + direct link */}
-              <div className="mt-8 inline-flex items-center gap-4 rounded-2xl border border-white/15 bg-white/8 p-2 backdrop-blur">
+              <div className="mt-8 flex flex-wrap items-center gap-2">
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="group/cta inline-flex items-center gap-2 rounded-xl bg-white/5 px-4 py-2 text-sm text-white transition-colors hover:bg-white/15"
+                  className="group/cta inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-4 py-2 text-sm text-white transition-colors hover:bg-white/20"
                   aria-label={locale === "pt" ? "Copiar email para área de transferência" : "Copy email to clipboard"}
-                  aria-live="polite"
-                  aria-atomic="true"
                 >
                   {copied ? (
                     <>
@@ -85,15 +85,19 @@ export const Contact = () => {
                     </>
                   )}
                 </button>
-                <div className="h-4 w-px bg-white/20" />
                 <a
-                  href={content.channels[0].href}
-                  className="group/cta inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium text-white transition-colors hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                  href={emailChannel.href}
+                  className="group/cta inline-flex min-h-11 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium text-white transition-colors hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 >
                   {locale === "pt" ? "Enviar email" : "Send email"}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5" />
                 </a>
               </div>
+              <p role="status" aria-live="polite" aria-atomic="true" className="mt-3 min-h-5 text-sm text-white/90">
+                {copyFailed
+                  ? (locale === "pt" ? `Não foi possível copiar. Use ${emailChannel.value} ou o link de email.` : `Could not copy. Use ${emailChannel.value} or the email link.`)
+                  : copied ? (locale === "pt" ? "Email copiado para a área de transferência." : "Email copied to clipboard.") : ""}
+              </p>
 
               {/* Socials */}
               <div className="mt-6 flex items-center gap-3">
@@ -105,7 +109,7 @@ export const Contact = () => {
                       href={s.href}
                       target="_blank"
                       rel="noreferrer noopener"
-                      aria-label={`${s.label} (opens in new tab)`}
+                      aria-label={`${s.label} (${locale === "pt" ? "abre em nova aba" : "opens in new tab"})`}
                       className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-all duration-700 ease-smooth hover:bg-white hover:text-slate-950 hover:rotate-[12deg] hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                       style={{ transitionDelay: `${(content.socials.length - 1 - i) * 80}ms` }}
                     >
@@ -117,7 +121,7 @@ export const Contact = () => {
             </div>
 
             {/* Right column — channel cards */}
-            <ul className="reveal space-y-4">
+            <ul className="reveal flex flex-col gap-4">
               {content.channels.map((c, i) => {
                 const Icon = channelIcons[c.icon];
                 return (
@@ -128,23 +132,23 @@ export const Contact = () => {
                   >
                     <a
                       href={c.href}
-                      className="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/8 p-5 backdrop-blur transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                      className="group flex items-center gap-3 rounded-2xl border border-white/25 bg-white/10 p-4 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                       {...(c.href.startsWith("https://")
                         ? { target: "_blank", rel: "noreferrer noopener" }
                         : {})}
                     >
-                      <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/15 text-white">
+                      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15 text-white">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs uppercase tracking-[0.18em] text-white/60" style={{ maxWidth: "100%", overflowWrap: "break-word" }}>
+                        <p className="text-xs uppercase tracking-[0.18em] text-white/80">
                           {c.label}
                         </p>
-                        <p className="text-base font-medium text-white break-all sm:truncate">
+                        <p className="break-words text-sm font-medium text-white [overflow-wrap:anywhere] sm:text-base">
                           {c.value}
                         </p>
                       </div>
-                      <ArrowUpRight className="h-5 w-5 text-white/70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                      <ArrowUpRight className="size-4 shrink-0 text-white/80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
                     </a>
                   </li>
                 );

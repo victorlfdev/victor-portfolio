@@ -22,26 +22,23 @@ export const Hero = () => {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="relative flex min-h-svh items-center overflow-hidden"
     >
-      <div className="z-0" style={{ position: "absolute", inset: 0 }}>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
         <DotGrid
           dotSize={2}
           gap={24}
           baseColor={dotBase}
           activeColor={dotActive}
           proximity={120}
-          speedTrigger={80}
-          shockRadius={200}
-          shockStrength={3}
           className="opacity-60"
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pt-28 md:px-8 md:py-32">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pb-20 pt-28 md:px-8 md:py-32">
         <div className="grid gap-10 md:grid-cols-[1.15fr_1fr] md:gap-16">
           {/* Left column — content */}
-          <div className="text-left">
+          <div className="min-w-0 text-left">
             {/* Badge */}
             <OnMountFadeIn
               delay={0.2}
@@ -163,7 +160,7 @@ export const Hero = () => {
           </div>
 
           {/* Right column — profile photo card with spotlight */}
-          <OnMountFadeIn delay={0.3} direction="right" className="relative">
+          <OnMountFadeIn delay={0.3} direction="right" className="relative min-w-0">
             <div className="relative w-full max-w-[440px]">
               {/* Decorative gradient blob behind card */}
               <div
@@ -190,8 +187,11 @@ export const Hero = () => {
                 <div className="relative w-full overflow-hidden rounded-[2rem] bg-card/40" style={{ minHeight: '280px', maxHeight: '480px', height: 'clamp(280px, 50vw, 480px)' }}>
                   <img
                     src={`${profilePhoto}`}
-                    srcSet={`${profilePhoto} 1x, ${profilePhoto} 2x`}
-                    alt="Foto de perfil de Victor Lima Fernandes"
+                    alt={locale === "pt" ? "Foto de Victor Lima Fernandes" : "Portrait of Victor Lima Fernandes"}
+                    width={1165}
+                    height={1165}
+                    fetchPriority="high"
+                    decoding="async"
                     className="h-full w-full object-cover object-center"
                     loading="eager"
                   />
@@ -212,7 +212,7 @@ export const Hero = () => {
                 <div className="grid gap-4 border-t border-border/60 p-5 pt-6">
                   <div className="flex items-center gap-3">
                     <div className="min-w-0 flex-1 rounded-lg bg-muted/50 px-3 py-2.5">
-                      <p className="font-mono text-xs text-muted-foreground">
+                      <p className="break-all font-mono text-xs text-muted-foreground">
                         <span className="text-primary">const</span>{" "}
                         <span className="text-foreground">
                           {content.profileFile}
@@ -225,7 +225,7 @@ export const Hero = () => {
                         target="_blank"
                         rel="noreferrer noopener"
                         aria-label={locale === "pt" ? "LinkedIn (abre em nova aba)" : "LinkedIn (opens in new tab)"}
-                        className="grid h-10 w-10 place-items-center rounded-[var(--radius)] border border-border/70 bg-background/50 transition-all duration-300 ease-smooth hover:bg-secondary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="grid size-11 shrink-0 place-items-center rounded-[var(--radius)] border border-border/70 bg-background/50 transition-all duration-300 ease-smooth hover:bg-secondary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <Linkedin className="h-4 w-4 text-primary" />
                       </a>
@@ -234,7 +234,7 @@ export const Hero = () => {
                         target="_blank"
                         rel="noreferrer noopener"
                         aria-label={locale === "pt" ? "GitHub (abre em nova aba)" : "GitHub (opens in new tab)"}
-                        className="grid h-10 w-10 place-items-center rounded-[var(--radius)] border border-border/70 bg-background/50 transition-all duration-300 ease-smooth hover:bg-secondary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="grid size-11 shrink-0 place-items-center rounded-[var(--radius)] border border-border/70 bg-background/50 transition-all duration-300 ease-smooth hover:bg-secondary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <Github className="h-4 w-4 text-primary" />
                       </a>
@@ -254,7 +254,7 @@ export const Hero = () => {
                         {content.liveProjectLabel}
                       </p>
                           <span className="relative flex h-2 w-2" aria-hidden="true">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-safe:animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite]" />
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 motion-safe:animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite]" />
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
                       </span>
                     </div>

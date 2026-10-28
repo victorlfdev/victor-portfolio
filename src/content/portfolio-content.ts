@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import projectAiCutAssistant from "@/assets/project-aicutassistant.png";
 import projectEducaOnline from "@/assets/project-educaonline.png";
+import projectAmplifica from "@/assets/project-amplifica.png";
+import projectBeauty from "@/assets/project-beauty.jpg";
 
 export const portfolioContent = {
   pt: {
@@ -29,7 +31,7 @@ export const portfolioContent = {
       themeLabelDark: "Ativar modo escuro",
       themeLabelLight: "Ativar modo claro",
       languageLabel: "Mudar visualização para inglês",
-      languageButton: "🇺🇸 EN",
+      languageButton: "EN",
     },
     hero: {
       badge: "Disponível para projetos",
@@ -187,7 +189,8 @@ export const portfolioContent = {
           description:
             "Landing page institucional desenvolvida para posicionar a marca Amplifica com foco em percepção premium, clareza de proposta e conversão.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-          live: "https://amplifica-landing.vercel.app/",
+          image: projectAmplifica,
+          live: "https://amplificamidias.com.br/",
           cta: "Abrir repositório",
           href: "https://github.com/victorlfdev/amplifica-landing",
           tier: "shipped",
@@ -198,6 +201,7 @@ export const portfolioContent = {
           description:
             "Landing page desenvolvida para o Salão Beauty, focada em apresentar os serviços, equipe e contato de forma clara e visualmente atraente.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          image: projectBeauty,
           live: "https://salao-beauty.vercel.app/",
           cta: "Ver projeto",
           href: "https://github.com/victorlfdev/salao-beauty",
@@ -256,7 +260,7 @@ export const portfolioContent = {
       socials: [
         {
           label: "LinkedIn",
-          href: "http://www.linkedin.com/in/victor-lima-fernandes",
+          href: "https://www.linkedin.com/in/victor-lima-fernandes",
           icon: "linkedin",
         },
         {
@@ -280,7 +284,7 @@ export const portfolioContent = {
       themeLabelDark: "Enable dark mode",
       themeLabelLight: "Enable light mode",
       languageLabel: "Switch portfolio to Portuguese",
-      languageButton: "🇧🇷 PT",
+      languageButton: "PT",
     },
     hero: {
       badge: "Available for projects",
@@ -438,6 +442,7 @@ export const portfolioContent = {
           description:
             "Institutional landing page built to position the Amplifica brand with a premium feel, clear value proposition, and conversion focus.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          image: projectAmplifica,
           live: "https://amplificamidias.com.br/",
           cta: "Open repository",
           href: "https://github.com/victorlfdev/amplifica-landing",
@@ -449,6 +454,7 @@ export const portfolioContent = {
           description:
             "Landing page built for the Salão Beauty, focused on presenting services, team, and contact information in a clear and visually appealing way.",
           stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+          image: projectBeauty,
           live: "https://salao-beauty.vercel.app/",
           cta: "View project",
           href: "https://github.com/victorlfdev/salao-beauty",
@@ -507,7 +513,7 @@ export const portfolioContent = {
       socials: [
         {
           label: "LinkedIn",
-          href: "http://www.linkedin.com/in/victor-lima-fernandes",
+          href: "https://www.linkedin.com/in/victor-lima-fernandes",
           icon: "linkedin",
         },
         {

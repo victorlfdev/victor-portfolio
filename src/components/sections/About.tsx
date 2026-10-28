@@ -1,37 +1,12 @@
-import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { getPortfolioContent } from "@/content/portfolio-content";
 
 export const About = () => {
   const { locale } = useLanguage();
   const content = getPortfolioContent(locale).about;
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const elements = section.querySelectorAll<HTMLElement>(".reveal");
-    if (!("IntersectionObserver" in window)) {
-      elements.forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
-    );
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [locale]);
 
   return (
-    <section id="sobre" className="py-24 md:py-32" ref={sectionRef}>
+    <section id="sobre" aria-labelledby="sobre-titulo" className="py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         {/* Eyebrow — spans full width, low visual weight */}
         <p className="reveal text-sm uppercase tracking-[0.2em] text-muted-foreground">
@@ -59,7 +34,7 @@ export const About = () => {
             </p>
 
             {/* Forward-looking closer */}
-            <p className="mt-6 text-sm text-muted-foreground/70">
+            <p className="mt-6 text-sm text-muted-foreground">
               {locale === "pt" ? "Agora, construindo interfaces que importam." : "Now, building interfaces that matter."}
             </p>
 
@@ -87,9 +62,8 @@ export const About = () => {
 
           {/* Right — timeline with visible connector line */}
           <div className="reveal md:col-span-7">
-            <ul className="relative space-y-4 pl-[2.75rem] md:pl-[3.5rem]">
+            <ul className="relative flex flex-col gap-4 border-l border-border pl-4 md:pl-6">
               {/* Vertical connector line */}
-              <div className="absolute top-0 left-[2.25rem] md:left-[3rem] h-full w-px bg-border" />
 
               {content.timeline.map((item, idx) => {
                 const Icon = item.icon;
@@ -100,7 +74,7 @@ export const About = () => {
                     style={{ transitionDelay: `${idx * 60}ms` }}
                   >
                     {/* Timeline dot — sits on the connector line */}
-                    <span aria-hidden="true" className="pointer-events-none absolute -left-[0.5rem] md:-left-[0.75rem] top-1/2 -translate-y-1/2 grid h-3 w-3 shrink-0 place-items-center rounded-full bg-primary ring-4 ring-background" />
+                    <span aria-hidden="true" className="pointer-events-none absolute -left-[1.4375rem] top-1/2 size-3 -translate-y-1/2 rounded-full bg-primary ring-4 ring-background md:-left-[1.9375rem]" />
 
                     <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="h-5 w-5" />
@@ -108,6 +82,7 @@ export const About = () => {
                     <div className="min-w-0 flex-1">
                       <p className="line-clamp-2 text-sm font-medium text-foreground sm:text-base">{item.title}</p>
                       <p className="text-sm text-muted-foreground">{item.org}</p>
+                      <p className="mt-2 text-xs tabular-nums text-muted-foreground sm:hidden">{item.period}</p>
                     </div>
                     <span className="hidden shrink-0 text-xs tabular-nums text-muted-foreground sm:inline-block">
                       {item.period}
