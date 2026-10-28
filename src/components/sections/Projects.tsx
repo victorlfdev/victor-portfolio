@@ -1,116 +1,133 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowRightLeft, ArrowUpRight, ChevronDown, Database, FileAudio, Server, Smartphone } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
-import { getPortfolioContent } from "@/content/portfolio-content";
+import { getPortfolioContent, type Project } from "@/content/portfolio-content";
+
+const externalLink = "inline-flex min-h-11 items-center gap-1.5 text-sm font-medium underline-offset-4 hover:underline";
+
+function AudioPreview() {
+  const { locale } = useLanguage();
+  const content = getPortfolioContent(locale).projects.audioPreview;
+  return (
+    <div className="flex h-full flex-col justify-center bg-secondary/50 px-5 py-6 sm:px-8">
+      <p className="max-w-xs font-display text-xl leading-snug text-foreground sm:text-2xl">{content.title}</p>
+      <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
+        <FileAudio aria-hidden="true" className="size-5 text-primary" /><span>{content.input}</span><ArrowRight aria-hidden="true" className="size-4" /><span className="text-foreground">{content.engine}</span>
+      </div>
+      <ul className="mt-5 grid grid-cols-3 gap-2">
+        {content.stems.map((stem) => <li key={stem} className="rounded-lg border border-border bg-background px-2 py-3 text-center text-xs font-medium text-primary sm:text-sm">{stem}</li>)}
+      </ul>
+      <p className="mt-4 text-xs text-muted-foreground">{content.output}</p>
+    </div>
+  );
+}
+
+function SyncPreview() {
+  const { locale } = useLanguage();
+  const content = getPortfolioContent(locale).projects.syncPreview;
+  return (
+    <div className="flex h-full flex-col justify-center bg-secondary/50 px-5 py-6 sm:px-8">
+      <p className="max-w-xs font-display text-xl leading-snug text-foreground sm:text-2xl">{content.title}</p>
+      <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+        <div className="flex min-w-0 flex-col items-center gap-2 rounded-xl border border-border bg-background px-2 py-4 text-center">
+          <Smartphone aria-hidden="true" className="size-7 text-primary" />
+          <p className="text-sm font-medium">{content.app}</p>
+          <p className="text-xs text-muted-foreground">{content.local}</p>
+        </div>
+        <ArrowRightLeft aria-hidden="true" className="size-5 text-primary" />
+        <div className="flex min-w-0 flex-col items-center gap-2 rounded-xl border border-border bg-background px-2 py-4 text-center">
+          <Server aria-hidden="true" className="size-7 text-primary" />
+          <p className="text-sm font-medium">{content.api}</p>
+          <p className="text-xs text-muted-foreground">{content.server}</p>
+        </div>
+      </div>
+      <p className="mt-4 flex items-center gap-2 text-sm text-foreground"><Database aria-hidden="true" className="size-4 shrink-0 text-primary" />{content.connection}</p>
+      <p className="mt-2 text-xs text-muted-foreground">{content.features}</p>
+    </div>
+  );
+}
 
 export const Projects = () => {
   const { locale } = useLanguage();
   const content = getPortfolioContent(locale).projects;
+  const projects: readonly Project[] = content.items;
 
   return (
     <section id="projetos" aria-labelledby="projects-title" className="py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <div className="reveal flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-              {content.eyebrow}
-            </p>
-            <h2 id="projects-title" className="mt-4 heading-section font-display text-foreground">
-              {content.titleBefore}
-              <span className="italic text-primary">
-                {content.titleEmphasis}
-              </span>
-            </h2>
-          </div>
-          <p className="text-muted-foreground md:max-w-sm">
-            {content.description}
-          </p>
+          <h2 id="projects-title" className="max-w-2xl heading-section font-display text-foreground">
+            {content.titleBefore}<span className="italic text-primary">{content.titleEmphasis}</span>
+          </h2>
+          <p className="max-w-md text-muted-foreground md:max-w-sm">{content.description}</p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 sm:gap-6">
-          {content.items.map((p, i) => {
-            const isShipped = p.tier === "shipped";
-            const isPrototype = p.tier === "prototype";
-
-            return (
-              <article
-                key={p.title}
-                id={`projeto-${p.title.toLowerCase().replace(/\s+/g, "-")}`}
-                className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 ease-smooth hover:-translate-y-1 hover:shadow-elegant project-card"
-                style={{
-                  transitionDelay: `${i * 60}ms`,
-                }}
-              >
-                {/* Tier indicator: thin accent line on shipped projects */}
-                {isShipped && (
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-primary" />
-                )}
-
-                <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-muted">
-                    <img
-                      src={p.image}
-                      alt={locale === "pt" ? `Prévia do projeto ${p.title}` : `${p.title} project preview`}
-                      width={1440}
-                      height={900}
-                      className="h-full w-full object-cover object-top transition-transform duration-700 ease-smooth group-hover:scale-[1.03]"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-gradient-to-t from-card via-card/90 to-transparent p-4 pt-10">
-                    {p.stack.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-border/80 bg-background/85 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur"
-                      >
-                        {item}
-                      </span>
+        <div className="mt-12 grid items-start gap-6 md:grid-cols-2">
+          {projects.map((project) => (
+            <article key={project.id} id={`projeto-${project.id}`} aria-labelledby={`title-${project.id}`} className="reveal overflow-hidden rounded-2xl border border-border bg-card project-card">
+              <figure>
+                <div className={`${project.image ? "aspect-[16/10]" : "h-80"} overflow-hidden bg-muted`}>
+                  {project.image ? (
+                    <img src={project.image} alt={project.imageAlt} width={1440} height={900} className="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
+                  ) : project.id === "stemway" ? <AudioPreview /> : <SyncPreview />}
+                </div>
+                <figcaption className="border-b border-border px-5 py-3 text-xs leading-relaxed text-muted-foreground sm:px-6">{project.mediaCaption}</figcaption>
+              </figure>
+              <div className="p-5 sm:p-6">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
+                  <span>{project.category}</span>
+                  <span className="rounded-md bg-secondary px-2 py-1 font-medium text-secondary-foreground">{project.status}</span>
+                </div>
+                <h3 id={`title-${project.id}`} className="mt-4 heading-card-title font-display text-foreground">{project.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                <ul aria-label={locale === "pt" ? `Tecnologias: ${project.title}` : `Technologies: ${project.title}`} className="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-xs font-medium text-foreground">
+                  {project.stack.map((technology) => <li key={technology}>{technology}</li>)}
+                </ul>
+                {project.note && <p className="mt-4 text-xs leading-relaxed text-muted-foreground">{project.note}</p>}
+                <details className="group/details mt-5 border-t border-border">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-3 text-sm font-medium text-foreground [&::-webkit-details-marker]:hidden">
+                    {content.detailsCta}<ChevronDown aria-hidden="true" className="size-4 shrink-0 transition-transform group-open/details:rotate-180" />
+                  </summary>
+                  <dl className="flex flex-col gap-4 pb-5 text-sm leading-relaxed">
+                    {[[content.challengeLabel, project.challenge], [content.contributionLabel, project.contribution], [content.deliveryLabel, project.delivery]].map(([label, value]) => (
+                      <div key={label}>
+                        <dt className="font-medium text-foreground">{label}</dt>
+                        <dd className="mt-1 text-muted-foreground">{value}</dd>
+                      </div>
                     ))}
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                      {p.category}
-                    </span>
-                    {isShipped && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-primary/5 text-primary px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        {locale === "pt" ? "Publicado" : "Shipped"}
-                      </span>
-                    )}
-                    {isPrototype && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-secondary/60 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                        {locale === "pt" ? "Protótipo" : "Prototype"}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="mt-2 heading-card-title font-display text-foreground">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {p.description}
-                  </p>
-                  <div className="mt-auto flex flex-wrap items-center justify-between gap-x-4 pt-5">
-                  <a
-                    href={p.href ?? "#contato-contact"}
-                    {...(p.href ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-                    className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-primary hover:underline hover:underline-offset-4"
-                    aria-label={`${p.cta}: ${p.title}`}
-                  >
-                    {p.cta}
-                    <ArrowUpRight className="h-4 w-4 transition-transform" />
+                  </dl>
+                </details>
+                <div className="flex flex-wrap items-center justify-between gap-x-4 border-t border-border pt-2">
+                  <a href={project.href} target="_blank" rel="noreferrer noopener" aria-label={`${content.codeCta}: ${project.title}`} className={`${externalLink} text-foreground`}>
+                    {content.codeCta}<ArrowUpRight aria-hidden="true" className="size-4" />
                   </a>
-                  {"live" in p && (
-                    <a href={p.live} target="_blank" rel="noreferrer noopener"
-                      aria-label={`${locale === "pt" ? "Visitar site" : "Visit website"}: ${p.title}`}
-                      className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline">
-                      {locale === "pt" ? "Visitar site" : "Visit website"}<ArrowUpRight className="size-4" />
-                    </a>
-                  )}
+                  {project.live && <a href={project.live} target="_blank" rel="noreferrer noopener" aria-label={`${content.liveCta}: ${project.title}`} className={`${externalLink} text-primary`}>
+                    {content.liveCta}<ArrowUpRight aria-hidden="true" className="size-4" />
+                  </a>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="reveal mt-16 border-t border-border pt-10">
+          <h3 className="font-display text-2xl text-foreground">{content.moreTitle}</h3>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">{content.moreDescription}</p>
+          <ul className="mt-6 grid gap-8 md:grid-cols-2">
+            {content.more.map((project) => (
+              <li id={`projeto-${project.id}`} key={project.id} className="flex flex-col gap-4 sm:flex-row">
+                <img src={project.image} alt={locale === "pt" ? `Página do projeto ${project.title}` : `${project.title} project page`} width={1440} height={900} loading="lazy" decoding="async" className="aspect-[16/10] w-full rounded-xl object-cover object-top sm:w-36 sm:self-start" />
+                <div className="min-w-0">
+                  <p className="text-xs text-muted-foreground">{project.category}</p>
+                  <h4 className="mt-1 font-display text-lg text-foreground">{project.title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                  <div className="mt-1 flex flex-wrap gap-x-5">
+                    <a href={project.href} target="_blank" rel="noreferrer noopener" aria-label={`${content.codeCta}: ${project.title}`} className={`${externalLink} text-foreground`}>{content.codeCta}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
+                    {"live" in project && <a href={project.live} target="_blank" rel="noreferrer noopener" aria-label={`${content.liveCta}: ${project.title}`} className={`${externalLink} text-primary`}>{content.liveCta}<ArrowUpRight aria-hidden="true" className="size-4" /></a>}
                   </div>
                 </div>
-              </article>
-            );
-          })}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

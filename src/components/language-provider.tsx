@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { siteMetadata } from "@/content/site-metadata";
 
 export type Locale = "pt" | "en";
 
@@ -23,13 +24,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = locale === "pt" ? "pt-BR" : "en";
-    document.title = locale === "pt"
-      ? "Victor Lima Fernandes | Desenvolvedor Front-End e Full Stack"
-      : "Victor Lima Fernandes | Front-End & Full Stack Developer";
+    const metadata = siteMetadata[locale];
+    document.title = metadata.title;
     const description = document.querySelector('meta[name="description"]');
-    description?.setAttribute("content", locale === "pt"
-      ? "Portfólio de Victor Lima Fernandes, desenvolvedor Front-End e Full Stack em São Paulo com foco em React, Next.js, TypeScript, Node.js e PostgreSQL."
-      : "Portfolio of Victor Lima Fernandes, a Front-End and Full Stack developer in São Paulo focused on React, Next.js, TypeScript, Node.js and PostgreSQL.");
+    description?.setAttribute("content", metadata.description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", metadata.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", metadata.description);
+    document.querySelector('meta[property="og:locale"]')?.setAttribute("content", metadata.locale);
+    document.querySelector('meta[property="og:image:alt"]')?.setAttribute("content", metadata.title);
   }, [locale]);
 
   const setLocale = useCallback((nextLocale: Locale) => {

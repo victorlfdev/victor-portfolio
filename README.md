@@ -1,14 +1,18 @@
 # Victor Lima Fernandes — Portfolio
 
-Portfólio pessoal de **Victor Lima Fernandes**, desenvolvedor Front-End e Full Stack com foco em React, Next.js, TypeScript, Node.js e PostgreSQL.
+Portfólio pessoal de **Victor Lima Fernandes**: sites para negócios e aplicações web, mobile e desktop, com desenvolvimento orientado por sua experiência em audiovisual.
 
-Uma landing single-page com todas as seções — sobre mim, habilidades, projetos e contato — com internacionalização (pt/en), alternância de tema claro/escuro e animações de scroll.
+Uma página com projetos, serviços, trajetória, tecnologias e contato, disponível em português e inglês, com temas claro/escuro e animações de rolagem.
 
 > 🌐 [victor-portfolio-blush.vercel.app](https://victor-portfolio-blush.vercel.app/)
 
 ## Funcionalidades
 
-- **Landing completa:** hero, sobre, habilidades, projetos e contato
+- **Leitura orientada por projetos:** apresentação → projetos → serviços → sobre → tecnologias → contato
+- **Estudos de caso:** desafio, atuação e entrega de Amplifica, Nexora, Stemway e PressãoViva
+- **Projetos complementares:** Salão Beauty e EducaOnline, com contexto e links públicos
+- **Serviços:** sites institucionais, interfaces para aplicações e integrações sob medida
+- **Tecnologias com evidências:** cada frente aponta para um projeto do portfólio
 - **Internacionalização:** português e inglês, com switch no navbar
 - **Tema claro/escuro:** com persistência via `localStorage`
 - **Animações de entrada:** reveal on scroll com hooks customizados
@@ -83,12 +87,13 @@ npm run test:e2e  # Build + fluxos no navegador
 src/
   assets/                       Imagens dos projetos e foto de perfil
   components/
-    sections/                   Seções da landing (Hero, About, Skills, Projects, Contact)
+    sections/                   Hero, Projects, Services, About, Skills, Contact
     ui/                         Primitives reutilizáveis (shadcn/ui)
     language-provider.tsx       Contexto de idioma
     theme-provider.tsx          Contexto de tema
   content/
     portfolio-content.ts        Fonte única de conteúdo (pt/en)
+    site-metadata.ts            Títulos e descrições por idioma
   hooks/                        useLenis, useReveal, useMobile, useToast
   pages/                        Index.tsx (home), NotFound.tsx
   lib/
@@ -103,8 +108,9 @@ src/
 Edite **`src/content/portfolio-content.ts`** para alterar:
 
 - textos em português e inglês
-- lista de habilidades e níveis
-- projetos exibidos com links e stack
+- tecnologias agrupadas com projetos de referência
+- estudos de caso, estado dos projetos, links públicos e stack
+- serviços oferecidos e exemplos relacionados
 - links de contato e redes sociais
 - experiências profissionais e formação
 
@@ -128,7 +134,11 @@ O conteúdo é tipado e exportado como `portfolioContent` com a função `getPor
 
 - O idioma selecionado persiste no `localStorage` do navegador.
 - O tema padrão é escuro.
-- As prévias dos projetos usam imagens locais; os sites publicados abrem em outra aba.
+- As prévias da Amplifica e Nexora usam imagens locais. Stemway e PressãoViva usam diagramas identificados como fluxo de processamento e arquitetura; não representam capturas das aplicações.
+- Nexora é um conceito com empresa, cases e métricas fictícios. PressãoViva é experimental e não possui autenticação. Stemway integra modelos de terceiros e executa a inferência localmente.
+- EducaOnline é um protótipo desenvolvido em equipe no Hackathon FIAP. Os detalhes do portfólio não atribuem todo o trabalho a uma única pessoa.
+- Os sites publicados e repositórios públicos abrem em outra aba. Nenhum projeto depende de repositório privado para ser avaliado.
+- Ao atualizar o posicionamento, mantenha `site-metadata.ts`, os metadados estáticos de `index.html` e a imagem de compartilhamento alinhados.
 - As animações respeitam a preferência de movimento reduzido do sistema.
 - `npm run test:e2e` usa Chromium do Playwright (instale com `npx playwright install chromium`) ou Microsoft Edge instalado. Use `PLAYWRIGHT_CHANNEL` para escolher outro canal. As capturas ficam em `.impeccable/`.
 - Ao atualizar dependências, mantenha `package-lock.json` e `bun.lock` sincronizados. A validação principal usa `npm ci`.

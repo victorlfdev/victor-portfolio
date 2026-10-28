@@ -53,10 +53,7 @@ export const Contact = () => {
           <div className="relative grid items-start gap-10 md:grid-cols-[1.15fr_1fr]">
             {/* Left column — text + CTA + socials */}
             <div className="reveal">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/70">
-                {content.eyebrow}
-              </p>
-              <h2 className="mt-4 heading-contact font-display text-white">
+              <h2 className="heading-contact font-display text-white">
                 {content.titleBefore}
                 <span className="italic">{content.titleEmphasis}</span>
               </h2>

@@ -85,11 +85,15 @@ export const Hero = () => {
               </span>
             </h1>
 
+            <p className="mt-6 max-w-xl text-balance font-display text-2xl leading-snug text-foreground sm:text-3xl">
+              {content.headline}
+            </p>
+
             {/* Description */}
             <OnMountFadeIn
               delay={0.5}
               direction="up"
-              className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
+              className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
               {content.description}
             </OnMountFadeIn>
@@ -117,7 +121,7 @@ export const Hero = () => {
                   className="inline-flex items-center gap-1.5 rounded-[var(--radius)] border border-border/70 bg-background/50 px-5 py-3.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <span>
-                    {locale === "pt" ? "Entrar em contato" : "Get in touch"}
+                    {content.secondaryCta}
                   </span>
                 </a>
               </OnMountFadeIn>
@@ -213,7 +217,6 @@ export const Hero = () => {
                   <div className="flex items-center gap-3">
                     <div className="min-w-0 flex-1 rounded-lg bg-muted/50 px-3 py-2.5">
                       <p className="break-all font-mono text-xs text-muted-foreground">
-                        <span className="text-primary">const</span>{" "}
                         <span className="text-foreground">
                           {content.profileFile}
                         </span>
@@ -246,7 +249,7 @@ export const Hero = () => {
                     href="https://amplificamidias.com.br/"
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label={locale === "pt" ? "Ver Amplifica Midias — projeto em produção" : "View Amplifica Midias — live project"}
+                    aria-label={locale === "pt" ? "Visitar site: Amplifica" : "Visit website: Amplifica"}
                     className="rounded-2xl border border-border/60 bg-background/60 p-4 transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft"
                   >
                     <div className="flex items-center justify-between">

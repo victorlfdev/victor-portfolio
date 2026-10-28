@@ -34,29 +34,44 @@ try {
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(origin);
   await page.locator("h1").waitFor();
-  await page.getByRole("link", { name: "Ver projetos", exact: true }).click();
+  await page.getByRole("link", { name: "Conhecer projetos", exact: true }).click();
   await page.waitForFunction(() => location.hash === "#projetos" && document.activeElement?.id === "projetos");
   assert((await page.locator("#projetos").boundingBox()).y >= 70, "Fixed header obscures section");
   assert.equal(await page.locator("iframe").count(), 0, "Project previews should be local assets");
   assert.equal(await page.locator("#projetos article").count(), 4);
-  assert.equal(await page.locator("#projetos a").filter({ hasText: "Visitar site" }).count(), 2);
+  assert.equal(await page.locator("#projetos a").filter({ hasText: "Visitar site" }).count(), 3);
+  assert.equal(await page.locator('a[href*="ai-cut-assistant-pro"]').count(), 0, "Private repository must not appear in the public showcase");
+  assert.deepEqual(await page.locator("main > section").evaluateAll((sections) => sections.map((section) => section.id)), ["top", "projetos", "servicos", "sobre", "habilidades", "contato-contact"]);
+  const missingTargets = await page.locator('a[href^="#"]').evaluateAll((links) => links.map((link) => link.getAttribute("href")).filter((href) => !document.getElementById(decodeURIComponent(href.slice(1)))));
+  assert.deepEqual(missingTargets, [], "All internal project and service links must resolve");
+  const caseStudy = page.locator("#projeto-nexora details");
+  await caseStudy.locator("summary").focus();
+  await page.keyboard.press("Enter");
+  assert(await caseStudy.locator("dd").first().isVisible(), "Project details must open with the keyboard");
+  await page.keyboard.press("Space");
+  assert.equal(await caseStudy.getAttribute("open"), null);
 
   await page.getByRole("button", { name: "Mudar visualização para inglês" }).click();
   await page.waitForFunction(() => document.documentElement.lang === "en");
   await page.reload();
   await page.getByRole("button", { name: "Switch portfolio to Portuguese" }).waitFor();
   assert.equal(await page.locator("html").getAttribute("lang"), "en");
+  assert((await page.title()).includes("Desktop Developer"));
+  assert.equal(await page.locator('meta[property="og:locale"]').getAttribute("content"), "en_US");
+  assert(await page.getByText("An independent concept study: the company, case studies, and metrics shown are fictional.", { exact: true }).isVisible());
   await page.getByRole("button", { name: "Enable light mode" }).click();
   assert(!(await page.locator("html").getAttribute("class")).includes("dark"));
 
   // Check real content at narrow, mobile, tablet and desktop widths in both languages.
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.waitForFunction(() => !document.documentElement.classList.contains("lenis"));
   assert(!(await page.locator("html").getAttribute("class")).includes("lenis"), "Reduced motion must disable Lenis");
   for (const locale of ["en", "pt"]) {
     for (const width of [320, 390, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
-      assert(!overflow, `Horizontal overflow: ${width}px / ${locale}`);
+      const overflowing = overflow ? await page.locator("body *").evaluateAll((elements) => elements.filter((element) => element.getBoundingClientRect().right > innerWidth + 1).map((element) => ({ tag: element.tagName, class: element.className, text: element.textContent?.slice(0, 80) })).slice(0, 12)) : [];
+      assert(!overflow, `Horizontal overflow: ${width}px / ${locale}: ${JSON.stringify(overflowing)}`);
     }
     if (locale === "en") await page.getByRole("button", { name: "Switch portfolio to Portuguese" }).click();
   }
@@ -68,10 +83,10 @@ try {
   await page.keyboard.press("Escape");
   assert(await openMenu.evaluate((element) => element === document.activeElement));
   await openMenu.click();
-  await page.getByRole("navigation", { name: "Navegação móvel" }).getByRole("link", { name: "Habilidades" }).click();
+  await page.getByRole("navigation", { name: "Navegação móvel" }).getByRole("link", { name: "Tecnologias" }).click();
   assert.equal(await openMenu.getAttribute("aria-expanded"), "false");
   await page.waitForFunction(() => location.hash === "#habilidades");
-  assert(await page.getByText("Tipagem forte, generics, utility types", { exact: true }).isVisible());
+  assert(await page.getByText("API REST, armazenamento local e sincronização com controle de reenvios.", { exact: true }).isVisible());
 
   for (const [name, width, theme] of [["mobile-dark", 390, "dark"], ["mobile-light", 390, "light"], ["desktop-dark", 1440, "dark"], ["desktop-light", 1440, "light"]]) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 });
@@ -88,6 +103,11 @@ try {
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForFunction(() => [...document.images].every((image) => image.complete && image.naturalWidth > 0));
     await page.screenshot({ path: `.impeccable/${name}.png`, fullPage: true });
+    if (theme === "dark") {
+      for (const section of ["top", "projetos", "servicos"]) {
+        await page.locator(`#${section}`).screenshot({ path: `.impeccable/${name}-${section}.png` });
+      }
+    }
     const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     assert.deepEqual(accessibility.violations.map((issue) => ({ id: issue.id, impact: issue.impact, nodes: issue.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })) })), [], `${name}: accessibility violations`);
   }
@@ -103,8 +123,8 @@ try {
   touchPage.on("pageerror", (error) => errors.push(error.message));
   await touchPage.goto(origin);
   await touchPage.getByRole("button", { name: "Abrir menu" }).tap();
-  await touchPage.getByRole("navigation", { name: "Navegação móvel" }).getByRole("link", { name: "Habilidades" }).tap();
-  assert(await touchPage.getByText("Tipagem forte, generics, utility types", { exact: true }).isVisible());
+  await touchPage.getByRole("navigation", { name: "Navegação móvel" }).getByRole("link", { name: "Tecnologias" }).tap();
+  assert(await touchPage.getByText("API REST, armazenamento local e sincronização com controle de reenvios.", { exact: true }).isVisible());
 
   // All reveal content remains available when IntersectionObserver is unavailable.
   const fallback = await browser.newContext({ reducedMotion: "reduce" });

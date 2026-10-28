@@ -146,6 +146,11 @@ export const Navbar = () => {
               </a>
             </li>
           ))}
+          <li>
+            <a href="#contato-contact" onClick={() => setMenuOpen(false)} className="flex min-h-12 items-center rounded-xl px-4 text-sm font-medium text-primary transition-colors hover:bg-secondary">
+              {content.navbar.contact}
+            </a>
+          </li>
         </ul>
       </nav>
     </header>

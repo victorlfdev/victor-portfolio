@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
+import { Services } from "@/components/sections/Services";
 import { Contact } from "@/components/sections/Contact";
 import { useLenis } from "@/hooks/use-lenis";
 import { useReveal } from "@/hooks/use-reveal";
@@ -21,9 +22,10 @@ const Index = () => {
       <Navbar />
       <main id="conteudo" tabIndex={-1}>
         <Hero />
+        <Projects />
+        <Services />
         <About />
         <Skills />
-        <Projects />
         <Contact />
       </main>
     </div>

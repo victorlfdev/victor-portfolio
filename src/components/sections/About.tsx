@@ -8,15 +8,10 @@ export const About = () => {
   return (
     <section id="sobre" aria-labelledby="sobre-titulo" className="py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
-        {/* Eyebrow — spans full width, low visual weight */}
-        <p className="reveal text-sm uppercase tracking-[0.2em] text-muted-foreground">
-          {content.eyebrow}
-        </p>
-
         {/* Headline — breaks out to full width, larger and bolder */}
         <h2
           id="sobre-titulo"
-          className="reveal mt-4 heading-about font-display text-foreground"
+          className="reveal heading-section font-display text-foreground"
         >
           {content.titleBefore}
           <span className="italic text-primary">{content.titleEmphasis}</span>
@@ -31,11 +26,6 @@ export const About = () => {
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
               {content.paragraphTwo}
-            </p>
-
-            {/* Forward-looking closer */}
-            <p className="mt-6 text-sm text-muted-foreground">
-              {locale === "pt" ? "Agora, construindo interfaces que importam." : "Now, building interfaces that matter."}
             </p>
 
             {/* Stat cards — with lift-by-response hover treatment */}
